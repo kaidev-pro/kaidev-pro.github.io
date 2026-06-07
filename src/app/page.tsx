@@ -117,12 +117,16 @@ export default function Home() {
           <Reveal>
             <div className="glass-card rounded-2xl p-8 md:p-12">
               <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-4xl font-bold shrink-0">
-                  BW
+                <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-purple-500/50 shrink-0">
+                  <img
+                    src="/profile.jpg"
+                    alt="Bagus Wiranto"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <p className="text-slate-300 leading-relaxed mb-4">
-                    I&apos;m a full-stack developer based in Japan, passionate about building products that solve real problems. My focus is on AI-powered platforms and automation — turning complex workflows into simple, user-friendly experiences.
+                    I&apos;m a full-stack developer and entrepreneur based in Japan, passionate about building products that solve real problems. My focus is on AI-powered platforms and automation — turning complex workflows into simple, user-friendly experiences.
                   </p>
                   <p className="text-slate-300 leading-relaxed mb-4">
                     Currently running two SaaS platforms: <strong className="text-purple-400">8Agents</strong> (AI Agent marketplace) and <strong className="text-cyan-400">RakuSaku</strong> (digital services marketplace). Both built with Next.js, FastAPI, and Docker.
@@ -216,6 +220,45 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <div className="section-divider max-w-4xl mx-auto" />
+
+      {/* Experience */}
+      <section id="experience" className="py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <Reveal>
+            <h2 className="text-3xl font-bold mb-12 text-center">
+              <span className="gradient-text">Experience</span>
+            </h2>
+          </Reveal>
+          <Reveal>
+            <div className="glass-card rounded-2xl p-6 md:p-8">
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center shrink-0">
+                    <ExternalLink className="w-5 h-5 text-purple-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold">Founder & Developer</h3>
+                    <p className="text-purple-400 text-sm">8Agents · 2024 - Present</p>
+                    <p className="text-slate-400 text-sm mt-1">AI Agent SaaS platform for real work via Telegram</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center shrink-0">
+                    <ExternalLink className="w-5 h-5 text-cyan-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold">Founder & Developer</h3>
+                    <p className="text-cyan-400 text-sm">RakuSaku · 2023 - Present</p>
+                    <p className="text-slate-400 text-sm mt-1">Game top-up & digital services marketplace</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
