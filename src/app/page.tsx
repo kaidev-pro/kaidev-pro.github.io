@@ -281,7 +281,7 @@ export default function Home() {
             <div className="flex justify-center gap-4 flex-wrap">
               <a
                 href="mailto:baguswiranto38@gmail.com"
-                className="btn-outline px-6 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
               >
                 <Mail className="w-4 h-4" />
                 Email
@@ -290,7 +290,7 @@ export default function Home() {
                 href="https://github.com/baguswiranto"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline px-6 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
               >
                 <GitFork className="w-4 h-4" />
                 GitHub
@@ -299,10 +299,37 @@ export default function Home() {
                 href="https://t.me/kaikazuki"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline px-6 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
               >
                 <Send className="w-4 h-4" />
                 Telegram
+              </a>
+              <a
+                href="https://x.com/Kiminoheroo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+              >
+                <ExternalLink className="w-4 h-4" />
+                X
+              </a>
+              <a
+                href="https://www.linkedin.com/in/bagus-wiranto-wicaksono-1ba320301"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+              >
+                <ExternalLink className="w-4 h-4" />
+                LinkedIn
+              </a>
+              <a
+                href="https://instagram.com/bagus.wiranto.wicaksono"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Instagram
               </a>
             </div>
           </Reveal>
@@ -311,7 +338,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-8 text-center text-slate-500 text-sm border-t border-white/5">
-        <p>© 2026 Bagus Wiranto. All rights reserved.</p>
+        <p>© 2026 Bagus Wiranto Wicaksono. All rights reserved.</p>
       </footer>
     </>
   );
