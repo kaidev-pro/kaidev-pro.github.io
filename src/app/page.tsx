@@ -382,15 +382,7 @@ export default function Home() {
                 <Briefcase className="w-4 h-4" />
                 LinkedIn
               </a>
-              <a
-                href="https://instagram.com/bagus.wiranto.wicaksono"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Instagram
-              </a>
+
             </div>
           </Reveal>
         </div>
