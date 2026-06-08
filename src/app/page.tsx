@@ -37,8 +37,8 @@ const SKILLS = [
 const PROJECTS = [
   {
     title: "8Agents",
-    desc: "AI Agent SaaS platform. Rent specialist AI agents for real work via Telegram — language teachers, content creators, business consultants.",
-    tech: ["Next.js", "FastAPI", "Docker", "PostgreSQL", "Telegram Bot API"],
+    desc: "AI Agent SaaS platform. 15+ autonomous agents with real-time task delegation, multi-provider AI integration (OpenAI, Anthropic, local models), and production monitoring via Telegram.",
+    tech: ["Next.js", "FastAPI", "Docker", "PostgreSQL", "Redis", "Telegram Bot API"],
     url: "https://8agents.xyz",
     logo: "/logos/8agents.svg",
     accent: "#f97316",
@@ -47,8 +47,8 @@ const PROJECTS = [
   },
   {
     title: "RakuSaku",
-    desc: "Game top-up platform with automated supplier integration. Supports Roblox, Mobile Legends, and 100+ digital products.",
-    tech: ["FastAPI", "PostgreSQL", "Digiflazz API", "Midtrans"],
+    desc: "Game top-up & digital services marketplace. Payment gateway integration (QRIS, e-wallets, bank transfer), automated supplier fulfillment via Digiflazz API, and admin dashboard.",
+    tech: ["Next.js", "FastAPI", "PostgreSQL", "Digiflazz API", "Duitku"],
     url: "https://rakusaku.com",
     logo: "/logos/rakusaku.svg",
     accent: "#ec4899",
@@ -332,7 +332,7 @@ export default function Home() {
           </SectionHeader>
           <Reveal>
             <p className="text-slate-300 mb-8 leading-[1.8]">
-              Interested in collaborating or have a project in mind? Let&apos;s talk.
+              Open to remote opportunities. Let&apos;s build something great together.
             </p>
           </Reveal>
           <Reveal>

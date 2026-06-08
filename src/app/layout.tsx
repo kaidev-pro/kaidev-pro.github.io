@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Bagus Wiranto — Developer & Entrepreneur",
-  description: "Full-stack developer building AI-powered platforms. Founder of 8Agents & RakuSaku.",
+  description: "Full-stack developer (Next.js, Python, FastAPI). Open to remote roles. Founder of 8Agents & RakuSaku.",
   icons: { icon: "/favicon.ico" },
 };
 
