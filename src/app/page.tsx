@@ -5,6 +5,7 @@ import { SolarSystem } from "@/components/solar-system";
 import { TypingEffect } from "@/components/typing-effect";
 import { FloatingParticles } from "@/components/floating-particles";
 import { CosmicGlow } from "@/components/cosmic-glow";
+import { ProjectCard } from "@/components/project-card";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
@@ -40,11 +41,9 @@ const PROJECTS = [
     tech: ["Next.js", "FastAPI", "Docker", "PostgreSQL", "Telegram Bot API"],
     url: "https://8agents.xyz",
     logo: "/logos/8agents.svg",
-    gradient: "from-[#030014] via-orange-900/30 to-[#030014]",
-    border: "border-orange-500/40",
-    hoverBorder: "hover:border-orange-400/70 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]",
-    iconBg: "bg-orange-500/20",
-    iconColor: "text-orange-400",
+    accent: "#f97316",
+    accentRgb: "249,115,22",
+    status: "LIVE",
   },
   {
     title: "RakuSaku",
@@ -52,11 +51,9 @@ const PROJECTS = [
     tech: ["FastAPI", "PostgreSQL", "Digiflazz API", "Midtrans"],
     url: "https://rakusaku.com",
     logo: "/logos/rakusaku.svg",
-    gradient: "from-[#0f0515] via-pink-900/30 to-[#0f0515]",
-    border: "border-pink-500/40",
-    hoverBorder: "hover:border-pink-400/70 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]",
-    iconBg: "bg-pink-500/20",
-    iconColor: "text-pink-400",
+    accent: "#ec4899",
+    accentRgb: "236,72,153",
+    status: "LIVE",
   },
 ];
 
@@ -270,42 +267,18 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6">
             {PROJECTS.map((project) => (
               <Reveal key={project.title}>
-                <motion.a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`glass-card rounded-2xl p-6 block group bg-gradient-to-br ${project.gradient} border ${project.border} ${project.hoverBorder} transition-all duration-300 relative overflow-hidden`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onMouseEnter={() => setHoveredProject(project.title)}
-                  onMouseLeave={() => setHoveredProject(null)}
-                >
-                  <FloatingParticles active={hoveredProject === project.title} />
-                  <div className="flex items-center gap-3 mb-4">
-                    <img 
-                      src={project.logo} 
-                      alt={project.title}
-                      className="w-12 h-12 object-contain"
-                    />
-                    <h3 className="text-xl font-bold group-hover:text-white transition-colors flex-1">
-                      {project.title}
-                    </h3>
-                    <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors shrink-0" />
-                  </div>
-                  <p className="text-slate-300 text-sm mb-4 leading-[1.7]">
-                    {project.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className={`text-xs px-2 py-1 rounded-md ${project.iconBg} ${project.iconColor} border ${project.border}`}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </motion.a>
+                <ProjectCard
+                  title={project.title}
+                  desc={project.desc}
+                  tech={project.tech}
+                  url={project.url}
+                  logo={project.logo}
+                  accent={project.accent}
+                  accentRgb={project.accentRgb}
+                  status={project.status}
+                  hovered={hoveredProject === project.title}
+                  onHover={(h) => setHoveredProject(h ? project.title : null)}
+                />
               </Reveal>
             ))}
           </div>
