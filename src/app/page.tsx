@@ -34,9 +34,11 @@ const PROJECTS = [
     tech: ["Next.js", "FastAPI", "Docker", "PostgreSQL", "Telegram Bot API"],
     url: "https://8agents.xyz",
     logo: "/logos/8agents.png",
-    gradient: "from-purple-600/20 to-indigo-600/20",
-    border: "border-purple-500/30",
-    hoverBorder: "hover:border-purple-400/60",
+    gradient: "from-[#030014] via-purple-900/30 to-[#030014]",
+    border: "border-purple-500/40",
+    hoverBorder: "hover:border-purple-400/70 hover:shadow-[0_0_30px_rgba(168,85,247,0.3)]",
+    iconBg: "bg-purple-500/20",
+    iconColor: "text-purple-400",
   },
   {
     title: "RakuSaku",
@@ -44,9 +46,11 @@ const PROJECTS = [
     tech: ["FastAPI", "PostgreSQL", "Digiflazz API", "Midtrans"],
     url: "https://rakusaku.com",
     logo: "/logos/rakusaku.jpg",
-    gradient: "from-pink-600/20 to-rose-600/20",
-    border: "border-pink-500/30",
-    hoverBorder: "hover:border-pink-400/60",
+    gradient: "from-[#0f0515] via-pink-900/30 to-[#0f0515]",
+    border: "border-pink-500/40",
+    hoverBorder: "hover:border-pink-400/70 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]",
+    iconBg: "bg-pink-500/20",
+    iconColor: "text-pink-400",
   },
 ];
 
@@ -217,7 +221,7 @@ export default function Home() {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-xs px-2 py-1 rounded-md bg-white/5 text-slate-300 border border-white/10"
+                        className={`text-xs px-2 py-1 rounded-md ${project.iconBg} ${project.iconColor} border ${project.border}`}
                       >
                         {t}
                       </span>
