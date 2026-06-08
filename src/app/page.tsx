@@ -207,7 +207,7 @@ export default function Home() {
                     <img 
                       src={project.logo} 
                       alt={project.title}
-                      className="w-10 h-10 rounded-lg object-cover"
+                      className="w-12 h-12 object-contain"
                     />
                     <h3 className="text-xl font-bold group-hover:text-white transition-colors flex-1">
                       {project.title}
