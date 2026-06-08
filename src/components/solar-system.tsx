@@ -19,7 +19,7 @@ function useIsMobile() {
 const REAL_ORBITS = [
   {
     name: "Mercury",
-    size: 4,
+    size: 7,
     au: 0.387,
     period: 0.241,
     color: "#b5b5b5",
@@ -27,7 +27,7 @@ const REAL_ORBITS = [
   },
   {
     name: "Venus",
-    size: 7,
+    size: 14,
     au: 0.723,
     period: 0.615,
     color: "#dba040",
@@ -35,7 +35,7 @@ const REAL_ORBITS = [
   },
   {
     name: "Earth",
-    size: 8,
+    size: 16,
     au: 1.0,
     period: 1.0,
     color: "#3b82f6",
@@ -43,7 +43,7 @@ const REAL_ORBITS = [
   },
   {
     name: "Mars",
-    size: 6,
+    size: 12,
     au: 1.524,
     period: 1.881,
     color: "#c1440e",
@@ -51,7 +51,7 @@ const REAL_ORBITS = [
   },
   {
     name: "Jupiter",
-    size: 16,
+    size: 30,
     au: 5.203,
     period: 11.86,
     color: "#d4944a",
@@ -60,7 +60,7 @@ const REAL_ORBITS = [
   },
   {
     name: "Saturn",
-    size: 13,
+    size: 26,
     au: 9.537,
     period: 29.46,
     color: "#d4b868",
@@ -69,7 +69,7 @@ const REAL_ORBITS = [
   },
   {
     name: "Uranus",
-    size: 10,
+    size: 20,
     au: 19.19,
     period: 84.01,
     color: "#60c8c8",
@@ -77,7 +77,7 @@ const REAL_ORBITS = [
   },
   {
     name: "Neptune",
-    size: 9,
+    size: 18,
     au: 30.07,
     period: 164.8,
     color: "#4060d0",
