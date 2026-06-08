@@ -2,7 +2,10 @@
 
 import { AnimatedBackground } from "@/components/animated-background";
 import { SolarSystem } from "@/components/solar-system";
+import { TypingEffect } from "@/components/typing-effect";
+import { FloatingParticles } from "@/components/floating-particles";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   GitFork,
   Mail,
@@ -70,6 +73,7 @@ function Reveal({ children, className }: { children: React.ReactNode; className?
 }
 
 export default function Home() {
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   return (
     <>
       <AnimatedBackground />
@@ -80,7 +84,7 @@ export default function Home() {
         <div className="text-center max-w-3xl relative z-10">
           <Reveal>
             <p className="text-sm tracking-widest uppercase mb-4 text-purple-400">
-              Developer &amp; Entrepreneur
+              <TypingEffect />
             </p>
           </Reveal>
           <Reveal>
@@ -201,10 +205,13 @@ export default function Home() {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`glass-card rounded-2xl p-6 block group bg-gradient-to-br ${project.gradient} border ${project.border} ${project.hoverBorder} transition-all duration-300`}
+                  className={`glass-card rounded-2xl p-6 block group bg-gradient-to-br ${project.gradient} border ${project.border} ${project.hoverBorder} transition-all duration-300 relative overflow-hidden`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onMouseEnter={() => setHoveredProject(project.title)}
+                  onMouseLeave={() => setHoveredProject(null)}
                 >
+                  <FloatingParticles active={hoveredProject === project.title} />
                   <div className="flex items-center gap-3 mb-4">
                     <img 
                       src={project.logo} 

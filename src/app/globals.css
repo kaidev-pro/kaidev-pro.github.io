@@ -84,6 +84,13 @@ body {
   animation: twinkle var(--duration, 4s) ease-in-out var(--delay, 0s) infinite;
 }
 
+/* Shooting star */
+@keyframes shoot {
+  0% { opacity: 0; transform: translateX(0) rotate(25deg); }
+  10% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(300px) rotate(25deg); }
+}
+
 /* Section divider */
 .section-divider {
   height: 1px;
