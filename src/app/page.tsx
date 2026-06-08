@@ -33,14 +33,20 @@ const PROJECTS = [
     desc: "AI Agent SaaS platform. Rent specialist AI agents for real work via Telegram — language teachers, content creators, business consultants.",
     tech: ["Next.js", "FastAPI", "Docker", "PostgreSQL", "Telegram Bot API"],
     url: "https://8agents.xyz",
-    color: "purple",
+    logo: "/logos/8agents.png",
+    gradient: "from-purple-600/20 to-indigo-600/20",
+    border: "border-purple-500/30",
+    hoverBorder: "hover:border-purple-400/60",
   },
   {
     title: "RakuSaku",
     desc: "Game top-up platform with automated supplier integration. Supports Roblox, Mobile Legends, and 100+ digital products.",
     tech: ["FastAPI", "PostgreSQL", "Digiflazz API", "Midtrans"],
     url: "https://rakusaku.com",
-    color: "cyan",
+    logo: "/logos/rakusaku.jpg",
+    gradient: "from-pink-600/20 to-rose-600/20",
+    border: "border-pink-500/30",
+    hoverBorder: "hover:border-pink-400/60",
   },
 ];
 
@@ -189,15 +195,20 @@ export default function Home() {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-card rounded-2xl p-6 block group"
+                  className={`glass-card rounded-2xl p-6 block group bg-gradient-to-br ${project.gradient} border ${project.border} ${project.hoverBorder} transition-all duration-300`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-xl font-bold group-hover:text-purple-400 transition-colors">
+                  <div className="flex items-center gap-3 mb-4">
+                    <img 
+                      src={project.logo} 
+                      alt={project.title}
+                      className="w-10 h-10 rounded-lg object-cover"
+                    />
+                    <h3 className="text-xl font-bold group-hover:text-white transition-colors flex-1">
                       {project.title}
                     </h3>
-                    <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-purple-400 transition-colors shrink-0 mt-1" />
+                    <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors shrink-0" />
                   </div>
                   <p className="text-slate-300 text-sm mb-4 leading-relaxed">
                     {project.desc}
@@ -206,11 +217,7 @@ export default function Home() {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className={`text-xs px-2 py-1 rounded-md ${
-                          project.color === "purple"
-                            ? "bg-purple-500/10 text-purple-400 border border-purple-500/20"
-                            : "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
-                        }`}
+                        className="text-xs px-2 py-1 rounded-md bg-white/5 text-slate-300 border border-white/10"
                       >
                         {t}
                       </span>
