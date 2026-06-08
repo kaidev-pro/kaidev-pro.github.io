@@ -40,11 +40,11 @@ const PROJECTS = [
     tech: ["Next.js", "FastAPI", "Docker", "PostgreSQL", "Telegram Bot API"],
     url: "https://8agents.xyz",
     logo: "/logos/8agents.svg",
-    gradient: "from-[#030014] via-purple-900/30 to-[#030014]",
-    border: "border-purple-500/40",
-    hoverBorder: "hover:border-purple-400/70 hover:shadow-[0_0_30px_rgba(168,85,247,0.3)]",
-    iconBg: "bg-purple-500/20",
-    iconColor: "text-purple-400",
+    gradient: "from-[#030014] via-orange-900/30 to-[#030014]",
+    border: "border-orange-500/40",
+    hoverBorder: "hover:border-orange-400/70 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]",
+    iconBg: "bg-orange-500/20",
+    iconColor: "text-orange-400",
   },
   {
     title: "RakuSaku",
@@ -78,11 +78,11 @@ function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
     <Reveal>
       <div className="flex items-center justify-center gap-4 mb-12">
-        <div className="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/50" />
+        <div className="h-px w-12 bg-gradient-to-r from-transparent to-orange-500/50" />
         <h2 className="text-3xl font-bold">
           {children}
         </h2>
-        <div className="h-px w-12 bg-gradient-to-l from-transparent to-cyan-500/50" />
+        <div className="h-px w-12 bg-gradient-to-l from-transparent to-pink-500/50" />
       </div>
     </Reveal>
   );
@@ -116,11 +116,11 @@ function BackToTop() {
     <motion.button
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.8 }}
-      className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-purple-500/20 border border-purple-500/40 backdrop-blur-sm flex items-center justify-center hover:bg-purple-500/30 hover:border-purple-400/60 transition-all"
+      className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-orange-500/20 border border-orange-500/40 backdrop-blur-sm flex items-center justify-center hover:bg-orange-500/30 hover:border-orange-400/60 transition-all"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       style={{ pointerEvents: visible ? "auto" : "none" }}
     >
-      <ChevronUp className="w-5 h-5 text-purple-400" />
+      <ChevronUp className="w-5 h-5 text-orange-400" />
     </motion.button>
   );
 }
@@ -147,7 +147,7 @@ export default function Home() {
             <h1
               className="text-5xl md:text-7xl font-bold mb-6 gradient-text"
               style={{
-                textShadow: "0 0 40px rgba(168,85,247,0.3), 0 0 80px rgba(34,211,238,0.15)",
+                textShadow: "0 0 40px rgba(249,115,22,0.3), 0 0 80px rgba(236,72,153,0.15)",
               }}
             >
               Bagus Wiranto Wicaksono
@@ -193,7 +193,7 @@ export default function Home() {
             <div className="glass-card rounded-2xl p-8 md:p-12">
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <div className="relative shrink-0">
-                  <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-purple-500/50">
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-orange-500/50">
                     <img
                       src="/profile.jpg"
                       alt="Bagus Wiranto Wicaksono"
@@ -203,9 +203,9 @@ export default function Home() {
                   {/* Pulsing glow ring */}
                   <div
                     className="absolute inset-0 rounded-full"
-                    style={{
-                      border: "2px solid transparent",
-                      background: "linear-gradient(135deg, rgba(168,85,247,0.3), rgba(34,211,238,0.3)) border-box",
+              style={{
+                    border: "2px solid transparent",
+                    background: "linear-gradient(135deg, rgba(249,115,22,0.3), rgba(236,72,153,0.3)) border-box",
                       WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
                       WebkitMaskComposite: "xor",
                       maskComposite: "exclude",
@@ -250,7 +250,7 @@ export default function Home() {
                   transition={{ delay: i * 0.05, duration: 0.4 }}
                   whileHover={{ scale: 1.05, y: -4 }}
                 >
-                  <skill.icon className="w-4 h-4 text-purple-400" />
+                  <skill.icon className="w-4 h-4 text-orange-400" />
                   <span className="text-sm font-medium">{skill.name}</span>
                 </motion.div>
               ))}

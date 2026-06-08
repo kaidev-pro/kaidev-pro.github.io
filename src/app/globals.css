@@ -38,7 +38,7 @@ body {
 
 /* Animated gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+  background: linear-gradient(135deg, #f97316, #ec4899, #f472b6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -118,29 +118,29 @@ body {
 /* Section divider */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), var(--primary), transparent);
+  background: linear-gradient(90deg, transparent, #f97316, #ec4899, #f97316, transparent);
   opacity: 0.3;
 }
 
 /* Button styles */
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, #f97316, #ec4899);
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
   transform: translateY(-2px);
 }
 
 .btn-outline {
-  border: 1px solid var(--primary);
+  border: 1px solid #f97316;
   transition: all 0.3s ease;
 }
 
 .btn-outline:hover {
-  background: rgba(168, 85, 247, 0.1);
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  background: rgba(249, 115, 22, 0.1);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
   transform: translateY(-2px);
 }
 

@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 
 const TITLES = [
-  "Developer & Entrepreneur",
-  "Full-Stack Developer",
-  "Founder of 8Agents & RakuSaku",
-  "AI Platform Builder",
+  { text: "Developer & Entrepreneur", highlight: false },
+  { text: "Full-Stack Developer", highlight: false },
+  { text: "Founder of ", highlight: false, brand1: "8Agents", brand2: "RakuSaku" },
+  { text: "AI Platform Builder", highlight: false },
 ];
 
 export function TypingEffect() {
@@ -16,22 +16,22 @@ export function TypingEffect() {
   const [text, setText] = useState("");
 
   useEffect(() => {
-    const currentTitle = TITLES[titleIndex];
+    const current = TITLES[titleIndex];
+    const fullText = current.brand1
+      ? current.text + current.brand1 + " & " + current.brand2
+      : current.text;
 
     const timeout = setTimeout(
       () => {
         if (!isDeleting) {
-          // Typing
-          setText(currentTitle.slice(0, charIndex + 1));
+          setText(fullText.slice(0, charIndex + 1));
           setCharIndex((prev) => prev + 1);
 
-          if (charIndex + 1 === currentTitle.length) {
-            // Pause before deleting
+          if (charIndex + 1 === fullText.length) {
             setTimeout(() => setIsDeleting(true), 2000);
           }
         } else {
-          // Deleting
-          setText(currentTitle.slice(0, charIndex - 1));
+          setText(fullText.slice(0, charIndex - 1));
           setCharIndex((prev) => prev - 1);
 
           if (charIndex - 1 === 0) {
@@ -46,9 +46,55 @@ export function TypingEffect() {
     return () => clearTimeout(timeout);
   }, [charIndex, isDeleting, titleIndex]);
 
+  // Render with brand colors
+  const renderText = () => {
+    const current = TITLES[titleIndex];
+    if (current.brand1 && text.includes(current.brand1)) {
+      const before = text.split(current.brand1)[0];
+      const afterBrand1 = text.includes(" & " + current.brand2)
+        ? text.split(" & " + current.brand2)
+        : null;
+
+      if (afterBrand1) {
+        const middle = afterBrand1[0].split(current.brand1)[1];
+        return (
+          <>
+            {before}
+            <span className="text-orange-400">{current.brand1}</span>
+            {middle}
+            <span className="text-pink-400">{current.brand2}</span>
+          </>
+        );
+      }
+
+      // Still typing brand1 or between brands
+      const brandStart = text.indexOf(current.brand1);
+      if (brandStart >= 0) {
+        const beforeText = text.slice(0, brandStart);
+        const brandText = text.slice(brandStart);
+        const isBrand1 = !text.includes(" & ");
+        return (
+          <>
+            {beforeText}
+            <span className={isBrand1 ? "text-orange-400" : ""}>
+              {isBrand1 ? brandText : current.brand1}
+            </span>
+            {!isBrand1 && (
+              <span className="text-pink-400">
+                {brandText.replace(current.brand1, "")}
+              </span>
+            )}
+          </>
+        );
+      }
+    }
+
+    return text;
+  };
+
   return (
     <span>
-      {text}
+      {renderText()}
       <span className="animate-pulse text-purple-400">|</span>
     </span>
   );
