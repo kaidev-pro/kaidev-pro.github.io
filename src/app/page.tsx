@@ -4,6 +4,7 @@ import { AnimatedBackground } from "@/components/animated-background";
 import { SolarSystem } from "@/components/solar-system";
 import { TypingEffect } from "@/components/typing-effect";
 import { FloatingParticles } from "@/components/floating-particles";
+import { CosmicGlow } from "@/components/cosmic-glow";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
@@ -80,6 +81,7 @@ export default function Home() {
 
       {/* Hero */}
       <section className="min-h-screen flex items-center justify-center px-4 relative">
+        <CosmicGlow />
         <SolarSystem />
         <div className="text-center max-w-3xl relative z-10">
           <Reveal>

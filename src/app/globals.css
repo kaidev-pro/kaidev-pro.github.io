@@ -91,6 +91,24 @@ body {
   100% { opacity: 0; transform: translateX(300px) rotate(25deg); }
 }
 
+/* Cosmic glow pulse */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Light ray pulse */
+@keyframes ray-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* Cosmic dust float */
+@keyframes dust-float {
+  0% { transform: translate(0, 0); opacity: 0.2; }
+  100% { transform: translate(20px, -30px); opacity: 0.5; }
+}
+
 /* Section divider */
 .section-divider {
   height: 1px;
