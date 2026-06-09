@@ -84,20 +84,25 @@ export function DomainExpansion() {
                 : "gojo-fullscreen-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards",
             }}
           >
-            <img
-              src="/gojo-domain.png?v=3"
-              alt="Gojo Satoru — Domain Expansion"
-              className="w-full h-full object-contain"
-              decoding="async"
-              style={{
-                maxWidth: "100vw",
-                maxHeight: "100vh",
-                filter: isMobile
-                  ? "none"
-                  : "drop-shadow(0 0 40px rgba(31, 90, 255, 0.5)) drop-shadow(0 0 80px rgba(138, 43, 226, 0.4)) drop-shadow(0 0 120px rgba(209, 230, 255, 0.2))",
-                contain: "layout paint",
-              }}
-            />
+            <picture>
+              <source srcSet="/gojo-domain-mobile.png?v=3" media="(max-width: 768px)" />
+              <img
+                src="/gojo-domain.png?v=3"
+                alt="Gojo Satoru — Domain Expansion"
+                className="w-full h-full object-contain"
+                decoding="async"
+                width="1086"
+                height="1448"
+                style={{
+                  maxWidth: "100vw",
+                  maxHeight: "100vh",
+                  filter: isMobile
+                    ? "none"
+                    : "drop-shadow(0 0 40px rgba(31, 90, 255, 0.5)) drop-shadow(0 0 80px rgba(138, 43, 226, 0.4)) drop-shadow(0 0 120px rgba(209, 230, 255, 0.2))",
+                  contain: "layout paint",
+                }}
+              />
+            </picture>
           </div>
 
           {/* Text overlay — bottom left */}
