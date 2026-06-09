@@ -67,7 +67,7 @@ export function DomainExpansion() {
             }}
           >
             <img
-              src="/gojo-domain.png"
+              src="/gojo-domain.png?v=2"
               alt="Gojo Satoru — Domain Expansion"
               className="w-full h-full object-contain"
               style={{
