@@ -1,19 +1,31 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 /**
  * "Domain Expansion" — Gojo portrait fills entire screen with transparent bg.
  * Cosmic energy overlay, particles, and "Unlimited Void" text.
+ * Mobile-optimized: reduced particles, no filter animations, will-change hints.
  */
 export function DomainExpansion() {
   const [isActive, setIsActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const triggerDomain = useCallback(() => {
     if (isActive) return;
     setIsActive(true);
     setTimeout(() => setIsActive(false), 4500);
   }, [isActive]);
+
+  // Mobile: fewer particles, no box-shadow glow
+  const particleCount = isMobile ? 10 : 30;
 
   return (
     <>
@@ -30,13 +42,13 @@ export function DomainExpansion() {
       {/* Full-screen overlay */}
       {isActive && (
         <div className="domain-expansion-overlay" key={Date.now()} style={{ background: "rgba(3, 0, 20, 0.92)" }}>
-          
-          {/* Cosmic energy particles */}
+
+          {/* Cosmic energy particles — mobile: 10, desktop: 30 */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {Array.from({ length: 30 }).map((_, i) => {
+            {Array.from({ length: particleCount }).map((_, i) => {
               const x = ((i * 47 + 13) % 100);
               const y = ((i * 73 + 31) % 100);
-              const size = 2 + (i % 5);
+              const size = isMobile ? 2 + (i % 3) : 2 + (i % 5);
               const delay = (i * 0.1);
               return (
                 <div
@@ -48,10 +60,11 @@ export function DomainExpansion() {
                     width: size,
                     height: size,
                     background: i % 4 === 0 ? "#1F5AFF" : i % 4 === 1 ? "#8A2BE2" : i % 4 === 2 ? "#D1E6FF" : "#FFFFFF",
-                    boxShadow: `0 0 ${size * 6}px ${i % 4 === 0 ? "rgba(31,90,255,0.8)" : i % 4 === 1 ? "rgba(138,43,226,0.8)" : "rgba(209,230,255,0.6)"}`,
+                    boxShadow: isMobile ? "none" : `0 0 ${size * 6}px ${i % 4 === 0 ? "rgba(31,90,255,0.8)" : i % 4 === 1 ? "rgba(138,43,226,0.8)" : "rgba(209,230,255,0.6)"}`,
                     animation: `cursed-float ${2 + (i % 3)}s ease-in-out ${delay}s infinite`,
                     ["--drift" as string]: `${(i % 2 === 0 ? 1 : -1) * (25 + i * 3)}px`,
                     ["--particle-opacity" as string]: "0.9",
+                    willChange: "transform, opacity",
                   }}
                 />
               );
@@ -63,17 +76,22 @@ export function DomainExpansion() {
             className="absolute inset-0 pointer-events-none flex items-center justify-center"
             style={{
               opacity: 0,
-              animation: "gojo-fullscreen-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards",
+              willChange: "transform, opacity",
+              animation: isMobile
+                ? "gojo-fullscreen-enter-mobile 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards"
+                : "gojo-fullscreen-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards",
             }}
           >
             <img
-              src="/gojo-domain.png?v=2"
+              src="/gojo-domain.png?v=3"
               alt="Gojo Satoru — Domain Expansion"
               className="w-full h-full object-contain"
               style={{
                 maxWidth: "100vw",
                 maxHeight: "100vh",
-                filter: "drop-shadow(0 0 40px rgba(31, 90, 255, 0.5)) drop-shadow(0 0 80px rgba(138, 43, 226, 0.4)) drop-shadow(0 0 120px rgba(209, 230, 255, 0.2))",
+                filter: isMobile
+                  ? "drop-shadow(0 0 20px rgba(31, 90, 255, 0.4))"
+                  : "drop-shadow(0 0 40px rgba(31, 90, 255, 0.5)) drop-shadow(0 0 80px rgba(138, 43, 226, 0.4)) drop-shadow(0 0 120px rgba(209, 230, 255, 0.2))",
               }}
             />
           </div>
