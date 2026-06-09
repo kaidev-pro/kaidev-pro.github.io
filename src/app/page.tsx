@@ -7,7 +7,7 @@ import { DomainExpansion } from "@/components/domain-expansion";
 import { TypingEffect } from "@/components/typing-effect";
 import { ProjectCard } from "@/components/project-card";
 import { CosmicEnergy } from "@/components/cosmic-energy";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import {
   GitFork,
@@ -144,6 +144,14 @@ function InfinityDecor({ className, size = "8rem" }: { className?: string; size?
 
 export default function Home() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroBgY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
   return (
     <>
@@ -154,8 +162,18 @@ export default function Home() {
       <BackToTop />
 
       {/* Hero */}
-      <section className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
-        <CosmicGlow />
+      <section ref={heroRef} className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
+        {/* Parallax background elements */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            y: heroBgY,
+            scale: heroScale,
+          }}
+        >
+          <CosmicGlow />
+          <CosmicEnergy />
+        </motion.div>
 
         {/* Cosmic energy effects matching Gojo image */}
         <CosmicEnergy />
@@ -174,21 +192,44 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="text-center max-w-3xl relative z-10">
-          <Reveal>
-            <p className="text-sm tracking-[0.3em] uppercase mb-6 text-blue-400/70">
-              <TypingEffect />
-            </p>
-          </Reveal>
-          <Reveal>
-            <h1
-              className="text-5xl md:text-7xl font-black mb-6 hero-name leading-tight"
+        <motion.div
+          className="text-center max-w-3xl relative z-10"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.p
+            className="text-sm tracking-[0.3em] uppercase mb-6 text-blue-400/70"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <TypingEffect />
+          </motion.p>
+          <motion.h1
+            className="text-5xl md:text-7xl font-black mb-6 hero-name leading-tight"
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <motion.span
+              className="inline-block"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
             >
               Bagus Wiranto
-              <br />
+            </motion.span>
+            <br />
+            <motion.span
+              className="inline-block"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+            >
               Wicaksono
-            </h1>
-          </Reveal>
+            </motion.span>
+          </motion.h1>
           <Reveal>
             <p className="text-lg md:text-xl text-slate-300 mb-8 leading-[1.8]">
               Full-stack developer who rapidly masters new technologies to ship AI-powered platforms.
@@ -214,7 +255,7 @@ export default function Home() {
               </a>
             </div>
           </Reveal>
-        </div>
+        </motion.div>
       </section>
 
       <div className="section-divider max-w-4xl mx-auto" />

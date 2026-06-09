@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { useRef, useState } from "react";
 
 interface ProjectCardProps {
   title: string;
@@ -28,6 +29,29 @@ export function ProjectCard({
   hovered,
   onHover,
 }: ProjectCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x: y * -15, y: x * 15 });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+    onHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    setTilt({ x: 0, y: 0 });
+    onHover(false);
+  };
+
   return (
     <motion.a
       href={url}
@@ -36,20 +60,31 @@ export function ProjectCard({
       className="block group relative infinity-border rounded-2xl"
       style={{
         padding: "1px",
+        perspective: "1000px",
       }}
-      whileHover={{ scale: 1.02, y: -4 }}
       whileTap={{ scale: 0.98 }}
-      onMouseEnter={() => onHover(true)}
-      onMouseLeave={() => onHover(false)}
     >
-      {/* Inner card */}
+      {/* Inner card with 3D tilt */}
       <div
-        className="relative rounded-2xl p-6 h-full overflow-hidden"
+        ref={cardRef}
+        className="relative rounded-2xl p-6 h-full overflow-hidden transition-transform duration-200 ease-out"
         style={{
           background: "rgba(3, 0, 20, 0.9)",
           backdropFilter: "blur(20px)",
+          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(${isHovering ? 1.02 : 1})`,
+          transformStyle: "preserve-3d",
         }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
+        {/* 3D shine effect */}
+        <div
+          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at ${50 + tilt.y * 3}% ${50 + tilt.x * 3}%, rgba(255,255,255,0.08) 0%, transparent 50%)`,
+          }}
+        />
         {/* Ambient glow on hover — using brand accent */}
         <div
           className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-700 blur-3xl"
