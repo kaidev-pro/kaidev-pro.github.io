@@ -12,6 +12,10 @@ interface Particle {
   duration: number;
 }
 
+/**
+ * Cursed energy floating particles effect.
+ * Appears when hovering on project cards (or any active state).
+ */
 export function FloatingParticles({ active }: { active: boolean }) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isMobile, setIsMobile] = useState(false);
@@ -29,7 +33,7 @@ export function FloatingParticles({ active }: { active: boolean }) {
       return;
     }
 
-    const colors = ["#a855f7", "#22d3ee", "#818cf8"];
+    const colors = ["#7B2FBE", "#00D4FF", "#a855f7"];
     const spawn = () => {
       const id = Date.now() + Math.random();
       const p: Particle = {
@@ -64,7 +68,7 @@ export function FloatingParticles({ active }: { active: boolean }) {
             width: p.size,
             height: p.size,
             backgroundColor: p.color,
-            boxShadow: `0 0 ${p.size * 2}px ${p.color}80`,
+            boxShadow: `0 0 ${p.size * 3}px ${p.color}`,
             willChange: "transform, opacity",
           }}
           initial={{ opacity: 0.8, y: 0 }}

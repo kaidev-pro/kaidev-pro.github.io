@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 const geistMono = Geist_Mono({
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bagus Wiranto — Developer & Entrepreneur",
-  description: "Full-stack developer (Next.js, Python, FastAPI). Open to remote roles. Founder of 8Agents & RakuSaku.",
+  title: "Bagus Wiranto — LIMITLESS Developer & Entrepreneur",
+  description: "Full-stack developer (Next.js, Python, FastAPI). Founder of 8Agents & RakuSaku. Limitless potential.",
   icons: { icon: "/favicon.ico" },
 };
 
@@ -24,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${geistMono.variable}`}>
       <head>
         <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com;" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />

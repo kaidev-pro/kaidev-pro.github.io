@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import { FloatingParticles } from "./floating-particles";
 
 interface ProjectCardProps {
   title: string;
@@ -34,11 +33,9 @@ export function ProjectCard({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block group relative rounded-2xl p-[1px] transition-all duration-500"
+      className="block group relative infinity-border rounded-2xl"
       style={{
-        background: hovered
-          ? `linear-gradient(135deg, ${accent}, transparent 40%, transparent 60%, ${accent})`
-          : `linear-gradient(135deg, rgba(255,255,255,0.08), transparent)`,
+        padding: "1px",
       }}
       whileHover={{ scale: 1.02, y: -4 }}
       whileTap={{ scale: 0.98 }}
@@ -49,11 +46,11 @@ export function ProjectCard({
       <div
         className="relative rounded-2xl p-6 h-full overflow-hidden"
         style={{
-          background: "rgba(3,0,20,0.85)",
+          background: "rgba(3, 0, 20, 0.9)",
           backdropFilter: "blur(20px)",
         }}
       >
-        {/* Ambient glow on hover */}
+        {/* Ambient glow on hover — using brand accent */}
         <div
           className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-700 blur-3xl"
           style={{ background: accent }}
@@ -63,8 +60,15 @@ export function ProjectCard({
           style={{ background: accent }}
         />
 
-        {/* Floating particles */}
-        <FloatingParticles active={hovered} />
+        {/* Infinity energy accent line at top */}
+        <div
+          className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            background: `linear-gradient(90deg, transparent, ${accent}, #00D4FF, ${accent}, transparent)`,
+            backgroundSize: "200% 100%",
+            animation: hovered ? "border-flow 3s linear infinite" : "none",
+          }}
+        />
 
         {/* Top row: logo + title + status */}
         <div className="flex items-center gap-3 mb-4 relative z-10">
@@ -73,6 +77,7 @@ export function ProjectCard({
             style={{
               background: `rgba(${accentRgb}, 0.1)`,
               border: `1px solid rgba(${accentRgb}, 0.2)`,
+              boxShadow: hovered ? `0 0 20px rgba(${accentRgb}, 0.2)` : "none",
             }}
           >
             <img
@@ -128,11 +133,11 @@ export function ProjectCard({
           ))}
         </div>
 
-        {/* Bottom line accent */}
+        {/* Bottom accent line */}
         <div
           className="absolute bottom-0 left-6 right-6 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{
-            background: `linear-gradient(90deg, transparent, ${accent}, transparent)`,
+            background: `linear-gradient(90deg, transparent, ${accent}, #00D4FF, ${accent}, transparent)`,
           }}
         />
       </div>

@@ -13,57 +13,11 @@ function useIsMobile() {
   return isMobile;
 }
 
-// Fewer stars on mobile
-const DESKTOP_STARS = Array.from({ length: 80 }, (_, i) => {
-  const h1 = ((i * 157 + 31) % 100) / 100;
-  const h2 = ((i * 89 + 17) % 100) / 100;
-  const h3 = ((i * 233 + 7) % 100) / 100;
-  const h4 = ((i * 67 + 43) % 100) / 100;
-  return {
-    top: `${h1 * 100}%`,
-    left: `${h2 * 100}%`,
-    size: 0.5 + h3 * 2,
-    opacity: 0.15 + h4 * 0.5,
-    duration: 3 + h3 * 5,
-    delay: h4 * 4,
-    color:
-      i % 5 === 0 ? "#22d3ee" : i % 7 === 0 ? "#818cf8" : "#fff",
-  };
-});
-
-const MOBILE_STARS = Array.from({ length: 30 }, (_, i) => {
-  const src = DESKTOP_STARS[i * 2] || DESKTOP_STARS[i];
-  return src;
-});
-
-function ShootingStar() {
-  const style = {
-    left: `${Math.random() * 100}%`,
-    top: `${Math.random() * 50}%`,
-    animationDuration: `${0.6 + Math.random() * 0.8}s`,
-    animationDelay: `${Math.random() * 0.3}s`,
-  };
-
-  return (
-    <div
-      className="absolute pointer-events-none"
-      style={{
-        ...style,
-        width: "120px",
-        height: "1px",
-        background:
-          "linear-gradient(90deg, rgba(255,255,255,0.8), rgba(168,85,247,0.6), transparent)",
-        transform: `rotate(${20 + Math.random() * 30}deg)`,
-        animation: `shoot ${style.animationDuration} ease-out ${style.animationDelay} forwards`,
-        borderRadius: "50%",
-        boxShadow: "0 0 6px 1px rgba(168,85,247,0.4)",
-        willChange: "transform, opacity",
-      }}
-    />
-  );
-}
-
-function CursorTrail() {
+/**
+ * Cursor trail effect — purple/blue cursed energy particles
+ * that follow the mouse on desktop.
+ */
+function CursedCursorTrail() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particles = useRef<
     Array<{
@@ -92,17 +46,17 @@ function CursorTrail() {
     resize();
     window.addEventListener("resize", resize);
 
-    const colors = ["#a855f7", "#22d3ee", "#818cf8", "#ffffff"];
+    const colors = ["#7B2FBE", "#00D4FF", "#a855f7", "#00D4FF88"];
 
     const handleMouse = (e: MouseEvent) => {
       for (let i = 0; i < 2; i++) {
         particles.current.push({
           x: e.clientX + (Math.random() - 0.5) * 10,
           y: e.clientY + (Math.random() - 0.5) * 10,
-          vx: (Math.random() - 0.5) * 1.5,
-          vy: (Math.random() - 0.5) * 1.5 - 0.5,
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: (Math.random() - 0.5) * 1.2 - 0.3,
           life: 1,
-          maxLife: 30 + Math.random() * 20,
+          maxLife: 25 + Math.random() * 20,
           size: Math.random() * 2.5 + 1,
           color: colors[Math.floor(Math.random() * colors.length)],
         });
@@ -116,14 +70,14 @@ function CursorTrail() {
         p.life -= 1 / p.maxLife;
         p.x += p.vx;
         p.y += p.vy;
-        p.vy -= 0.02;
+        p.vy -= 0.015;
 
         if (p.life <= 0) return false;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.life * 0.6;
+        ctx.globalAlpha = p.life * 0.5;
         ctx.fill();
         ctx.globalAlpha = 1;
 
@@ -152,115 +106,91 @@ function CursorTrail() {
   );
 }
 
+/**
+ * Floating cursed energy particles in the background.
+ * Purple/blue glowing dots that float upward.
+ */
+const PARTICLE_COUNT_DESKTOP = 40;
+const PARTICLE_COUNT_MOBILE = 15;
+
+const PARTICLES_DESKTOP = Array.from({ length: PARTICLE_COUNT_DESKTOP }, (_, i) => {
+  const h1 = ((i * 157 + 31) % 100) / 100;
+  const h2 = ((i * 89 + 17) % 100) / 100;
+  const h3 = ((i * 233 + 7) % 100) / 100;
+  return {
+    left: `${h1 * 100}%`,
+    size: 1 + h3 * 3,
+    opacity: 0.2 + h3 * 0.4,
+    duration: 15 + h3 * 25,
+    delay: h2 * 10,
+    drift: `${(i % 2 === 0 ? 1 : -1) * (10 + h2 * 30)}px`,
+    color: i % 3 === 0 ? "rgba(123, 47, 190, 0.6)" : i % 4 === 0 ? "rgba(0, 212, 255, 0.5)" : "rgba(168, 85, 247, 0.4)",
+  };
+});
+
+const PARTICLES_MOBILE = PARTICLES_DESKTOP.slice(0, PARTICLE_COUNT_MOBILE);
+
 export function AnimatedBackground() {
-  const [shootingStars, setShootingStars] = useState<number[]>([]);
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const isMobile = useIsMobile();
-
-  // Shooting stars — desktop only
-  useEffect(() => {
-    if (isMobile) return;
-    const spawn = () => {
-      const id = Date.now() + Math.random();
-      setShootingStars((prev) => [...prev.slice(-3), id]);
-      setTimeout(() => {
-        setShootingStars((prev) => prev.filter((s) => s !== id));
-      }, 2000);
-      setTimeout(spawn, 2000 + Math.random() * 4000);
-    };
-    const initial = setTimeout(spawn, 3000);
-    return () => clearTimeout(initial);
-  }, [isMobile]);
-
-  // Mouse parallax — desktop only
-  useEffect(() => {
-    if (isMobile) return;
-    const handleMouse = (e: MouseEvent) => {
-      setMousePos({
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
-      });
-    };
-    window.addEventListener("mousemove", handleMouse);
-    return () => window.removeEventListener("mousemove", handleMouse);
-  }, [isMobile]);
-
-  const nebulaOffset1 = {
-    x: (mousePos.x - 0.5) * 40,
-    y: (mousePos.y - 0.5) * 40,
-  };
-  const nebulaOffset2 = {
-    x: (mousePos.x - 0.5) * -30,
-    y: (mousePos.y - 0.5) * -30,
-  };
-
-  const stars = isMobile ? MOBILE_STARS : DESKTOP_STARS;
-  const blurClass = isMobile ? "blur-[60px]" : "blur-[120px]";
 
   return (
     <>
       {/* Cursor trail — desktop only */}
-      {!isMobile && <CursorTrail />}
+      {!isMobile && <CursedCursorTrail />}
 
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        {/* Nebula glow 1 */}
+        {/* Void black base with purple radial gradient */}
         <div
-          className={`absolute rounded-full ${blurClass} opacity-15 pointer-events-none`}
+          className="absolute inset-0"
           style={{
-            top: "10%",
-            left: "20%",
-            width: isMobile ? 300 : 500,
-            height: isMobile ? 300 : 500,
-            background:
-              "radial-gradient(circle, rgba(168,85,247,0.4) 0%, transparent 70%)",
-            transform: isMobile
-              ? "none"
-              : `translate(${nebulaOffset1.x}px, ${nebulaOffset1.y}px)`,
-            transition: isMobile ? "none" : "transform 2s ease-out",
-            willChange: isMobile ? "auto" : "transform",
-          }}
-        />
-        {/* Nebula glow 2 */}
-        <div
-          className={`absolute rounded-full ${blurClass} opacity-10 pointer-events-none`}
-          style={{
-            top: "60%",
-            right: "10%",
-            width: isMobile ? 250 : 400,
-            height: isMobile ? 250 : 400,
-            background:
-              "radial-gradient(circle, rgba(34,211,238,0.3) 0%, transparent 70%)",
-            transform: isMobile
-              ? "none"
-              : `translate(${nebulaOffset2.x}px, ${nebulaOffset2.y}px)`,
-            transition: isMobile ? "none" : "transform 2s ease-out",
-            willChange: isMobile ? "auto" : "transform",
+            background: "radial-gradient(ellipse at 50% 30%, rgba(123, 47, 190, 0.12) 0%, rgba(3, 0, 20, 0) 60%)",
           }}
         />
 
-        {/* Stars */}
-        {stars.map((star, i) => (
+        {/* Secondary blue glow */}
+        <div
+          className="absolute"
+          style={{
+            top: "60%",
+            right: "15%",
+            width: isMobile ? 250 : 400,
+            height: isMobile ? 250 : 400,
+            background: "radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%)",
+            animation: "pulse-glow 8s ease-in-out 2s infinite",
+            filter: `blur(${isMobile ? 60 : 100}px)`,
+          }}
+        />
+
+        {/* Infinity field grid */}
+        {!isMobile && <div className="grid-field" />}
+
+        {/* Cursed energy particles */}
+        {(isMobile ? PARTICLES_MOBILE : PARTICLES_DESKTOP).map((p, i) => (
           <div
             key={i}
-            className="absolute rounded-full star"
+            className="cursed-particle"
             style={{
-              top: star.top,
-              left: star.left,
-              width: star.size,
-              height: star.size,
-              backgroundColor: star.color,
-              ["--star-opacity" as string]: star.opacity,
-              ["--duration" as string]: `${star.duration}s`,
-              ["--delay" as string]: `${star.delay}s`,
-              willChange: "opacity",
+              left: p.left,
+              bottom: "-5%",
+              width: p.size,
+              height: p.size,
+              backgroundColor: p.color,
+              boxShadow: `0 0 ${p.size * 3}px ${p.color}`,
+              animationDuration: `${p.duration}s`,
+              animationDelay: `${p.delay}s`,
+              ["--drift" as string]: p.drift,
+              ["--particle-opacity" as string]: p.opacity,
             }}
           />
         ))}
 
-        {/* Shooting stars — desktop only */}
-        {shootingStars.map((id) => (
-          <ShootingStar key={id} />
-        ))}
+        {/* Vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse at center, transparent 30%, rgba(3, 0, 20, 0.7) 100%)",
+          }}
+        />
       </div>
     </>
   );

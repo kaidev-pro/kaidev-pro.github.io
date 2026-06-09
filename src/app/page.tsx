@@ -1,13 +1,13 @@
 "use client";
 
 import { AnimatedBackground } from "@/components/animated-background";
-import { SolarSystem } from "@/components/solar-system";
-import { TypingEffect } from "@/components/typing-effect";
-import { FloatingParticles } from "@/components/floating-particles";
 import { CosmicGlow } from "@/components/cosmic-glow";
+import { CustomCursor } from "@/components/custom-cursor";
+import { DomainExpansion } from "@/components/domain-expansion";
+import { TypingEffect } from "@/components/typing-effect";
 import { ProjectCard } from "@/components/project-card";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   GitFork,
   Mail,
@@ -21,7 +21,6 @@ import {
   Zap,
   Layers,
   Briefcase,
-  FileText,
   ChevronUp,
 } from "lucide-react";
 
@@ -77,11 +76,11 @@ function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
     <Reveal>
       <div className="flex items-center justify-center gap-4 mb-12">
-        <div className="h-px w-12 bg-gradient-to-r from-transparent to-orange-500/50" />
+        <div className="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/50" />
         <h2 className="text-3xl font-bold">
           {children}
         </h2>
-        <div className="h-px w-12 bg-gradient-to-l from-transparent to-pink-500/50" />
+        <div className="h-px w-12 bg-gradient-to-l from-transparent to-blue-400/50" />
       </div>
     </Reveal>
   );
@@ -96,7 +95,7 @@ function ScrollProgress() {
       className="fixed top-0 left-0 right-0 h-[2px] z-50 origin-left"
       style={{
         scaleX,
-        background: "linear-gradient(90deg, #a855f7, #22d3ee, #818cf8)",
+        background: "linear-gradient(90deg, #7B2FBE, #00D4FF, #7B2FBE)",
       }}
     />
   );
@@ -115,41 +114,73 @@ function BackToTop() {
     <motion.button
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.8 }}
-      className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-orange-500/20 border border-orange-500/40 backdrop-blur-sm flex items-center justify-center hover:bg-orange-500/30 hover:border-orange-400/60 transition-all"
+      className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full border border-purple-500/40 backdrop-blur-sm flex items-center justify-center hover:border-blue-400/60 transition-all"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      style={{ pointerEvents: visible ? "auto" : "none" }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      style={{ pointerEvents: visible ? "auto" : "none", background: "rgba(123, 47, 190, 0.15)" }}
     >
-      <ChevronUp className="w-5 h-5 text-orange-400" />
+      <ChevronUp className="w-5 h-5 text-blue-400" />
     </motion.button>
+  );
+}
+
+/**
+ * Animated infinity symbol as a background decoration element
+ */
+function InfinityDecor({ className, size = "8rem" }: { className?: string; size?: string }) {
+  return (
+    <span
+      className={`infinity-symbol inline-block select-none pointer-events-none ${className || ""}`}
+      style={{ fontSize: size }}
+      aria-hidden="true"
+    >
+      ∞
+    </span>
   );
 }
 
 export default function Home() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+
   return (
     <>
       <ScrollProgress />
       <AnimatedBackground />
+      <CustomCursor />
+      <DomainExpansion />
       <BackToTop />
 
       {/* Hero */}
-      <section className="min-h-screen flex items-center justify-center px-4 relative">
+      <section className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
         <CosmicGlow />
-        <SolarSystem />
+
+        {/* Floating infinity symbols in background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-[15%] left-[10%] opacity-[0.07]">
+            <InfinityDecor size="12rem" />
+          </div>
+          <div className="absolute bottom-[20%] right-[8%] opacity-[0.05]">
+            <InfinityDecor size="10rem" />
+          </div>
+          <div className="absolute top-[60%] left-[70%] opacity-[0.04]">
+            <InfinityDecor size="6rem" />
+          </div>
+        </div>
+
         <div className="text-center max-w-3xl relative z-10">
           <Reveal>
-            <p className="text-sm tracking-widest uppercase mb-4 text-slate-400">
+            <p className="text-sm tracking-[0.3em] uppercase mb-6 text-blue-400/70">
               <TypingEffect />
             </p>
           </Reveal>
           <Reveal>
             <h1
-              className="text-5xl md:text-7xl font-bold mb-6 gradient-text"
-              style={{
-                textShadow: "0 0 40px rgba(34,211,238,0.3), 0 0 80px rgba(56,189,248,0.15)",
-              }}
+              className="text-5xl md:text-7xl font-black mb-6 hero-name leading-tight"
             >
-              Bagus Wiranto Wicaksono
+              Bagus Wiranto
+              <br />
+              Wicaksono
             </h1>
           </Reveal>
           <Reveal>
@@ -170,7 +201,7 @@ export default function Home() {
           <Reveal>
             <div className="flex gap-4 justify-center flex-wrap">
               <a href="#projects" className="btn-primary px-6 py-3 rounded-xl text-white font-medium">
-                View Projects
+                <span>View Projects</span>
               </a>
               <a href="#contact" className="btn-outline px-6 py-3 rounded-xl text-white font-medium">
                 Contact Me
@@ -189,39 +220,42 @@ export default function Home() {
             About <span className="gradient-text">Me</span>
           </SectionHeader>
           <Reveal>
-            <div className="glass-card rounded-2xl p-8 md:p-12">
-              <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="relative shrink-0">
-                  <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-orange-500/50">
-                    <img
-                      src="/profile.jpg"
-                      alt="Bagus Wiranto Wicaksono"
-                      className="w-full h-full object-cover"
+            <div className="infinity-border">
+              <div className="glass-card rounded-2xl p-8 md:p-12">
+                <div className="flex flex-col md:flex-row gap-8 items-center">
+                  <div className="relative shrink-0">
+                    <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-purple-500/50">
+                      <img
+                        src="/profile.jpg"
+                        alt="Bagus Wiranto Wicaksono"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    {/* Pulsing glow ring */}
+                    <div
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        border: "2px solid transparent",
+                        background: "linear-gradient(135deg, rgba(123, 47, 190, 0.3), rgba(0, 212, 255, 0.3)) border-box",
+                        WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
+                        WebkitMaskComposite: "xor",
+                        maskComposite: "exclude",
+                        animation: "profile-glow 3s ease-in-out infinite",
+                      }}
                     />
                   </div>
-                  {/* Pulsing glow ring */}
-                  <div
-                    className="absolute inset-0 rounded-full"
-              style={{
-                    border: "2px solid transparent",
-                    background: "linear-gradient(135deg, rgba(249,115,22,0.3), rgba(236,72,153,0.3)) border-box",
-                      WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
-                      WebkitMaskComposite: "xor",
-                      maskComposite: "exclude",
-                      animation: "profile-glow 3s ease-in-out infinite",
-                    }}
-                  />
-                </div>
-                <div>
-                  <p className="text-slate-300 leading-[1.8] mb-4">
-                    I&apos;m a full-stack developer and entrepreneur based in Japan, passionate about building products that solve real problems. My focus is on AI-powered platforms and automation — turning complex workflows into simple, user-friendly experiences.
-                  </p>
-                  <p className="text-slate-300 leading-[1.8] mb-4">
-                    Currently running two SaaS platforms: <strong className="text-orange-400">8Agents</strong> (AI Agent marketplace) and <strong className="text-pink-400">RakuSaku</strong> (digital services marketplace). Both built with Next.js, FastAPI, and Docker.
-                  </p>
-                  <p className="text-slate-400 text-sm">
-                    Based in Japan 🇯🇵 · Open to collaboration
-                  </p>
+                  <div>
+                    <p className="text-slate-300 leading-[1.8] mb-4">
+                      I&apos;m a full-stack developer and entrepreneur based in Japan, passionate about building products that solve real problems. My focus is on AI-powered platforms and automation — turning complex workflows into simple, user-friendly experiences.
+                    </p>
+                    <p className="text-slate-300 leading-[1.8] mb-4">
+                      Currently running two SaaS platforms: <strong className="text-orange-400">8Agents</strong> (AI Agent marketplace) and <strong className="text-pink-400">RakuSaku</strong> (digital services marketplace). Both built with Next.js, FastAPI, and Docker.
+                    </p>
+                    <p className="text-slate-400 text-sm flex items-center gap-2">
+                      Based in Japan 🇯🇵 · Open to collaboration
+                      <InfinityDecor size="1.2rem" className="opacity-30" />
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -242,14 +276,17 @@ export default function Home() {
               {SKILLS.map((skill, i) => (
                 <motion.div
                   key={skill.name}
-                  className="glass-card rounded-xl px-5 py-3 flex items-center gap-2 cursor-default"
+                  className="glass-card rounded-xl px-5 py-3 flex items-center gap-2 cursor-default spatial-hover"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05, duration: 0.4 }}
                   whileHover={{ scale: 1.05, y: -4 }}
+                  style={{
+                    animationDelay: `${i * 0.3}s`,
+                  }}
                 >
-                  <skill.icon className="w-4 h-4 text-orange-400" />
+                  <skill.icon className="w-4 h-4 text-blue-400" />
                   <span className="text-sm font-medium">{skill.name}</span>
                 </motion.div>
               ))}
@@ -296,26 +333,30 @@ export default function Home() {
             <span className="gradient-text">Experience</span>
           </SectionHeader>
           <Reveal>
-            <div className="glass-card rounded-2xl p-6 md:p-8">
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center shrink-0">
-                    <ExternalLink className="w-5 h-5 text-orange-400" />
+            <div className="infinity-border">
+              <div className="glass-card rounded-2xl p-6 md:p-8">
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ background: "rgba(123, 47, 190, 0.15)" }}>
+                      <ExternalLink className="w-5 h-5 text-orange-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold">Founder & Developer</h3>
+                      <p className="text-orange-400 text-sm">8Agents · 2026 - Present</p>
+                      <p className="text-slate-400 text-sm mt-1">AI Agent SaaS platform for real work via Telegram</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold">Founder & Developer</h3>
-                    <p className="text-orange-400 text-sm">8Agents · 2026 - Present</p>
-                    <p className="text-slate-400 text-sm mt-1">AI Agent SaaS platform for real work via Telegram</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center shrink-0">
-                    <ExternalLink className="w-5 h-5 text-pink-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Founder & Developer</h3>
-                    <p className="text-pink-400 text-sm">RakuSaku · 2026 - Present</p>
-                    <p className="text-slate-400 text-sm mt-1">Game top-up & digital services marketplace</p>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ background: "rgba(0, 212, 255, 0.1)" }}>
+                      <ExternalLink className="w-5 h-5 text-pink-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold">Founder & Developer</h3>
+                      <p className="text-pink-400 text-sm">RakuSaku · 2026 - Present</p>
+                      <p className="text-slate-400 text-sm mt-1">Game top-up & digital services marketplace</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -341,7 +382,7 @@ export default function Home() {
             <div className="flex justify-center gap-4 flex-wrap">
               <a
                 href="mailto:baguswirantowicaksono@gmail.com"
-                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2 spatial-hover"
               >
                 <Mail className="w-4 h-4" />
                 Email
@@ -350,7 +391,7 @@ export default function Home() {
                 href="https://github.com/baguswiranto"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2 spatial-hover"
               >
                 <GitFork className="w-4 h-4" />
                 GitHub
@@ -359,7 +400,7 @@ export default function Home() {
                 href="https://t.me/kaikazukii"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2 spatial-hover"
               >
                 <Send className="w-4 h-4" />
                 Telegram
@@ -368,7 +409,7 @@ export default function Home() {
                 href="https://x.com/Kiminoheroo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2 spatial-hover"
               >
                 <ExternalLink className="w-4 h-4" />
                 X
@@ -377,20 +418,23 @@ export default function Home() {
                 href="https://www.linkedin.com/in/bagus-wiranto-wicaksono-1ba320301"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2"
+                className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2 spatial-hover"
               >
                 <Briefcase className="w-4 h-4" />
                 LinkedIn
               </a>
-
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 text-center text-slate-500 text-sm border-t border-white/5">
-        <p>© 2026 Bagus Wiranto Wicaksono. All rights reserved.</p>
+      <footer className="py-8 text-center text-slate-500 text-sm" style={{ borderTop: "1px solid rgba(123, 47, 190, 0.1)" }}>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-purple-500/40 text-lg">∞</span>
+          <p>© 2026 Bagus Wiranto Wicaksono. All rights reserved.</p>
+          <span className="text-blue-400/40 text-lg">∞</span>
+        </div>
       </footer>
     </>
   );

@@ -3,27 +3,26 @@
 :root {
   --background: #030014;
   --foreground: #e2e8f0;
-  --primary: #a855f7;
-  --secondary: #22d3ee;
-  --accent: #818cf8;
-  --card-bg: rgba(17, 24, 39, 0.6);
-  --card-border: rgba(168, 85, 247, 0.2);
+  --purple: #7B2FBE;
+  --blue: #00D4FF;
+  --void: #030014;
+  --card-bg: rgba(3, 0, 20, 0.7);
+  --card-border: rgba(123, 47, 190, 0.25);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans);
-  --font-space: var(--font-space);
+  --color-purple: var(--purple);
+  --color-blue: var(--blue);
+  --color-void: var(--void);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-mono);
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--primary) transparent;
+  scrollbar-color: var(--purple) transparent;
 }
 
 html {
@@ -37,9 +36,11 @@ body {
   overflow-x: hidden;
 }
 
-/* Animated gradient text */
+/* ============================================
+   GRADIENT TEXT — Purple/Blue Limitless glow
+   ============================================ */
 .gradient-text {
-  background: linear-gradient(135deg, #60a5fa, #38bdf8, #22d3ee, #818cf8, #a78bfa);
+  background: linear-gradient(135deg, #7B2FBE, #00D4FF, #7B2FBE, #00D4FF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -55,100 +56,331 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Glow effects */
-.glow-purple {
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), 0 0 60px rgba(168, 85, 247, 0.1);
+/* ============================================
+   HERO NAME — Infinity distortion effect
+   ============================================ */
+.hero-name {
+  background: linear-gradient(135deg, #7B2FBE, #00D4FF, #a855f7, #00D4FF, #7B2FBE);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 400% 400%;
+  animation: infinity-gradient 8s ease-in-out infinite, hero-pulse 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(123, 47, 190, 0.4)) drop-shadow(0 0 60px rgba(0, 212, 255, 0.2));
+  position: relative;
 }
 
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 60px rgba(34, 211, 238, 0.1);
+@keyframes infinity-gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 0%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 100%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Card glass effect */
+@keyframes hero-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 30px rgba(123, 47, 190, 0.4)) drop-shadow(0 0 60px rgba(0, 212, 255, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 50px rgba(123, 47, 190, 0.6)) drop-shadow(0 0 100px rgba(0, 212, 255, 0.35));
+  }
+}
+
+/* ============================================
+   GLASSMORPHISM CARDS
+   ============================================ */
 .glass-card {
   background: var(--card-bg);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--card-border);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(168, 85, 247, 0.5);
-  box-shadow: 0 0 30px rgba(168, 85, 247, 0.15), 0 0 60px rgba(168, 85, 247, 0.05);
-  transform: translateY(-4px);
+  border-color: rgba(123, 47, 190, 0.5);
+  box-shadow: 0 0 30px rgba(123, 47, 190, 0.15), 0 0 60px rgba(0, 212, 255, 0.08);
 }
 
-/* Star twinkle animation */
-@keyframes twinkle {
-  0%, 100% { opacity: var(--star-opacity, 0.3); }
-  50% { opacity: 1; }
+/* ============================================
+   ANIMATED GRADIENT BORDER (Infinity energy flow)
+   ============================================ */
+.infinity-border {
+  position: relative;
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(123, 47, 190, 0.3), rgba(0, 212, 255, 0.1), rgba(123, 47, 190, 0.1), rgba(0, 212, 255, 0.3));
+  background-size: 400% 400%;
+  animation: border-flow 6s linear infinite;
+  transition: all 0.4s ease;
 }
 
-.star {
-  animation: twinkle var(--duration, 4s) ease-in-out var(--delay, 0s) infinite;
+.infinity-border:hover {
+  background: linear-gradient(135deg, rgba(123, 47, 190, 0.6), rgba(0, 212, 255, 0.4), rgba(123, 47, 190, 0.4), rgba(0, 212, 255, 0.6));
+  background-size: 400% 400%;
+  animation: border-flow 3s linear infinite;
+  box-shadow: 0 0 20px rgba(123, 47, 190, 0.3), 0 0 40px rgba(0, 212, 255, 0.15);
 }
 
-/* Shooting star */
-@keyframes shoot {
-  0% { opacity: 0; transform: translateX(0) rotate(25deg); }
-  10% { opacity: 1; }
-  100% { opacity: 0; transform: translateX(300px) rotate(25deg); }
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Cosmic glow pulse */
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+.infinity-border > * {
+  border-radius: calc(1rem - 1px);
 }
 
-/* Light ray pulse */
-@keyframes ray-pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+/* ============================================
+   SPATIAL DISTORTION HOVER EFFECT
+   ============================================ */
+.spatial-hover {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Cosmic dust float */
-@keyframes dust-float {
-  0% { transform: translate(0, 0); opacity: 0.2; }
-  100% { transform: translate(20px, -30px); opacity: 0.5; }
+.spatial-hover:hover {
+  transform: perspective(800px) rotateX(2deg) rotateY(-2deg) scale(1.02);
 }
 
-/* Profile photo glow ring */
-@keyframes profile-glow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-}
-
-/* Section divider */
+/* ============================================
+   SECTION DIVIDER — Energy flow
+   ============================================ */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #f97316, #ec4899, #f97316, transparent);
+  background: linear-gradient(90deg, transparent, #7B2FBE, #00D4FF, #7B2FBE, transparent);
   opacity: 0.3;
 }
 
-/* Button styles */
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
 .btn-primary {
-  background: linear-gradient(135deg, #f97316, #ec4899);
+  background: linear-gradient(135deg, #7B2FBE, #00D4FF);
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #00D4FF, #7B2FBE);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+  box-shadow: 0 0 25px rgba(123, 47, 190, 0.5), 0 0 50px rgba(0, 212, 255, 0.25);
   transform: translateY(-2px);
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 1;
 }
 
 .btn-outline {
-  border: 1px solid #f97316;
+  border: 1px solid rgba(123, 47, 190, 0.5);
   transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  background: rgba(123, 47, 190, 0.05);
 }
 
 .btn-outline:hover {
-  background: rgba(249, 115, 22, 0.1);
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+  background: rgba(123, 47, 190, 0.15);
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 20px rgba(123, 47, 190, 0.3), 0 0 40px rgba(0, 212, 255, 0.1);
   transform: translateY(-2px);
 }
 
-/* Skill badge animation */
+/* ============================================
+   CUSTOM CURSOR — Desktop only
+   ============================================ */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #00D4FF;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.1s ease;
+  mix-blend-mode: screen;
+}
+
+.cursor-glow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  background: radial-gradient(circle, rgba(123, 47, 190, 0.4) 0%, rgba(0, 212, 255, 0.1) 50%, transparent 70%);
+  transition: transform 0.15s ease-out, width 0.3s ease, height 0.3s ease;
+  mix-blend-mode: screen;
+}
+
+.cursor-glow.hovering {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(123, 47, 190, 0.6) 0%, rgba(0, 212, 255, 0.25) 50%, transparent 70%);
+}
+
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-glow {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   DOMAIN EXPANSION OVERLAY
+   ============================================ */
+.domain-expansion-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, rgba(123, 47, 190, 0.95) 0%, rgba(3, 0, 20, 0.98) 60%, #030014 100%);
+  animation: domain-expand 3s ease-in-out forwards;
+}
+
+@keyframes domain-expand {
+  0% {
+    opacity: 0;
+    clip-path: circle(0% at 50% 50%);
+  }
+  30% {
+    opacity: 1;
+    clip-path: circle(100% at 50% 50%);
+  }
+  70% {
+    opacity: 1;
+    clip-path: circle(100% at 50% 50%);
+  }
+  100% {
+    opacity: 0;
+    clip-path: circle(0% at 50% 50%);
+  }
+}
+
+.domain-expansion-text {
+  font-size: clamp(2rem, 8vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff, #00D4FF, #7B2FBE, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: domain-text-glow 1.5s ease-in-out infinite;
+  text-shadow: none;
+}
+
+@keyframes domain-text-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5)) drop-shadow(0 0 60px rgba(123, 47, 190, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.8)) drop-shadow(0 0 100px rgba(123, 47, 190, 0.5));
+  }
+}
+
+/* Domain Expansion floating button */
+.domain-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9990;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #00D4FF;
+  background: rgba(3, 0, 20, 0.8);
+  border: 1px solid rgba(123, 47, 190, 0.4);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.domain-btn:hover {
+  background: rgba(123, 47, 190, 0.3);
+  border-color: rgba(0, 212, 255, 0.6);
+  box-shadow: 0 0 20px rgba(123, 47, 190, 0.4), 0 0 40px rgba(0, 212, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.domain-btn .infinity-icon {
+  font-size: 16px;
+  animation: infinity-spin 3s linear infinite;
+}
+
+@keyframes infinity-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ============================================
+   FLOATING PARTICLES — Cursed Energy
+   ============================================ */
+.cursed-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: cursed-float linear infinite;
+}
+
+@keyframes cursed-float {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--particle-opacity, 0.6);
+  }
+  90% {
+    opacity: var(--particle-opacity, 0.6);
+  }
+  100% {
+    transform: translateY(-100vh) translateX(var(--drift, 20px)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   INFINITY SYMBOL ANIMATIONS
+   ============================================ */
+.infinity-symbol {
+  font-size: clamp(4rem, 10vw, 8rem);
+  background: linear-gradient(135deg, rgba(123, 47, 190, 0.15), rgba(0, 212, 255, 0.1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: infinity-pulse 6s ease-in-out infinite;
+  user-select: none;
+}
+
+@keyframes infinity-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.6; transform: scale(1.05) rotate(3deg); }
+}
+
+/* ============================================
+   SKILL BADGE FLOAT
+   ============================================ */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
@@ -158,57 +390,111 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Nebula glow effect */
-.nebula-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.15;
-  pointer-events: none;
+/* ============================================
+   PROFILE GLOW
+   ============================================ */
+@keyframes profile-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
 }
 
-/* Smooth section transitions */
+/* ============================================
+   CURSED ENERGY PARTICLE BACKGROUND
+   ============================================ */
+@keyframes energy-drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  15% { opacity: 0.7; }
+  85% { opacity: 0.7; }
+  100% { transform: translateY(-100vh) translateX(var(--drift-x, 30px)); opacity: 0; }
+}
+
+/* ============================================
+   PULSE GLOW for background effects
+   ============================================ */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+::selection {
+  background: rgba(123, 47, 190, 0.4);
+  color: white;
+}
+
+/* ============================================
+   SMOOTH SECTION TRANSITIONS
+   ============================================ */
 section {
   position: relative;
 }
 
-/* Selection color */
-::selection {
-  background: rgba(168, 85, 247, 0.3);
-  color: white;
-}
-
-/* Mobile scroll optimizations */
+/* ============================================
+   MOBILE OPTIMIZATIONS
+   ============================================ */
 @media (max-width: 768px) {
-  .star {
-    animation-duration: 8s !important;
-  }
-  
   .glass-card {
     backdrop-filter: blur(8px);
   }
-  
+
   .glass-card:hover {
     transform: none;
   }
-  
+
+  .spatial-hover:hover {
+    transform: none;
+  }
+
   section {
     will-change: auto;
   }
+
+  .infinity-border {
+    animation-duration: 10s;
+  }
+
+  .infinity-border:hover {
+    animation-duration: 6s;
+  }
 }
 
-/* GPU acceleration for animated elements */
-.star,
+/* ============================================
+   GPU ACCELERATION
+   ============================================ */
 .glass-card,
 .btn-primary,
-.btn-outline {
-  will-change: opacity;
+.btn-outline,
+.hero-name,
+.infinity-symbol {
+  will-change: transform;
   transform: translateZ(0);
 }
 
-/* Smooth scroll on all devices */
+/* ============================================
+   SMOOTH SCROLL
+   ============================================ */
 html {
   -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================
+   GRID WARP FIELD (background effect)
+   ============================================ */
+.grid-field {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(123, 47, 190, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(123, 47, 190, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%);
+  animation: grid-shift 20s linear infinite;
+}
+
+@keyframes grid-shift {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 60px 60px, 60px 60px; }
 }

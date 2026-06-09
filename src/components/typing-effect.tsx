@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 
 const TITLES = [
-  { text: "Developer & Entrepreneur", highlight: false },
-  { text: "Full-Stack Developer", highlight: false },
+  { text: "Full Stack Developer", highlight: false },
   { text: "Founder of ", highlight: false, brand1: "8Agents", brand2: "RakuSaku" },
   { text: "AI Platform Builder", highlight: false },
+  { text: "Entrepreneur & Developer", highlight: false },
 ];
 
 export function TypingEffect() {
@@ -95,7 +95,7 @@ export function TypingEffect() {
   return (
     <span>
       {renderText()}
-      <span className="animate-pulse text-purple-400">|</span>
+      <span className="animate-pulse" style={{ color: "#00D4FF" }}>|</span>
     </span>
   );
 }
