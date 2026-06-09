@@ -498,3 +498,17 @@ html {
   0% { background-position: 0 0, 0 0; }
   100% { background-position: 60px 60px, 60px 60px; }
 }
+
+/* ============================================
+   DOMAIN EXPANSION — Gojo portrait entrance
+   ============================================ */
+@keyframes gojo-domain-enter {
+  0% { opacity: 0; transform: translateY(5%) scale(0.95); filter: brightness(2) drop-shadow(0 0 80px rgba(31, 90, 255, 0.8)); }
+  60% { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1.2) drop-shadow(0 0 60px rgba(31, 90, 255, 0.5)); }
+  100% { opacity: 0.9; transform: translateY(0) scale(1); filter: brightness(1) drop-shadow(0 0 40px rgba(31, 90, 255, 0.3)); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
