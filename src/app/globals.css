@@ -57,23 +57,25 @@ body {
 }
 
 /* ============================================
-   HERO NAME — Static gradient, no animation
+   HERO NAME — Gradient Flow + Shimmer
    ============================================ */
 .hero-name {
-  background: linear-gradient(135deg, #7B2FBE, #00D4FF, #a855f7, #00D4FF, #7B2FBE);
+  background: linear-gradient(
+    90deg,
+    #7B2FBE 0%, #00D4FF 15%, #a855f7 35%, #00D4FF 55%, #7B2FBE 75%,
+    #ffffff 85%, #00D4FF 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-position: 50% 50%;
-  text-shadow: 0 0 30px rgba(123, 47, 190, 0.3), 0 0 60px rgba(0, 212, 255, 0.15);
+  background-size: 200% 100%;
+  animation: hero-gradient-flow 6s ease-in-out infinite, hero-pulse 4s ease-in-out infinite;
   position: relative;
 }
 
-@keyframes infinity-gradient {
+@keyframes hero-gradient-flow {
   0% { background-position: 0% 50%; }
-  25% { background-position: 50% 0%; }
   50% { background-position: 100% 50%; }
-  75% { background-position: 50% 100%; }
   100% { background-position: 0% 50%; }
 }
 
