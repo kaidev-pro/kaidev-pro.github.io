@@ -470,8 +470,9 @@ section {
     animation: none;
   }
   .hero-name {
-    animation: none;
-    background-size: 100% 100%;
+    /* Keep gradient flow animation, remove hero-pulse (filter = GPU heavy) */
+    animation: hero-gradient-flow 8s ease-in-out infinite;
+    background-size: 200% 100%;
   }
 }
 
@@ -566,4 +567,66 @@ html {
 @keyframes energy-arc-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* ============================================
+   MOBILE STARS — Pure CSS twinkling stars
+   ============================================ */
+.mobile-star {
+  position: absolute;
+  width: var(--star-size, 2px);
+  height: var(--star-size, 2px);
+  background: white;
+  border-radius: 50%;
+  animation: mobile-star-twinkle var(--star-duration, 3s) ease-in-out infinite;
+  animation-delay: var(--star-delay, 0s);
+  opacity: 0;
+}
+
+@keyframes mobile-star-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: var(--star-opacity, 0.8); transform: scale(1); }
+}
+
+/* ============================================
+   MOBILE SECTION REVEAL — Scroll fade-in-up
+   ============================================ */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-hidden.section-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   SECTION HEADER AURA — Purple/blue header glow
+   ============================================ */
+.section-header-aura {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(123, 47, 190, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  animation: aura-breathe 4s ease-in-out infinite;
+}
+
+@keyframes aura-breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+/* Mobile optimizations for new effects */
+@media (max-width: 768px) {
+  .mobile-star {
+    will-change: opacity, transform;
+  }
 }

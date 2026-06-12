@@ -1,9 +1,70 @@
-// Mobile-optimized page: pure HTML/CSS, ZERO framer-motion imports
+"use client";
+
+import { useEffect, useState } from "react";
+
+// Deterministic star positions (50 stars, pure CSS animation)
+const MOBILE_STARS = Array.from({ length: 50 }, (_, i) => ({
+  left: `${(i * 7.3 * (i % 3 + 1)) % 100}%`,
+  top: `${(i * 11.7 * (i % 2 + 1)) % 100}%`,
+  size: i % 3 === 0 ? 3 : i % 5 === 0 ? 1 : 2,
+  duration: 2 + (i % 5),
+  delay: (i * 0.4) % 5,
+  opacity: 0.3 + (i % 5) * 0.15,
+}));
+
+function useScrollReveal() {
+  const [revealed, setRevealed] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setRevealed((prev) => new Set(prev).add(entry.target.id));
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    const sections = document.querySelectorAll("[data-reveal]");
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return revealed;
+}
+
 export default function MobilePage() {
+  const revealed = useScrollReveal();
+
+  const isRevealed = (id: string) => revealed.has(id);
+
+  const sectionClass = (id: string, base = "") =>
+    `section-hidden ${isRevealed(id) ? "section-revealed" : ""} ${base}`;
+
   return (
     <>
+      {/* Stars Background */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {MOBILE_STARS.map((star, i) => (
+          <div
+            key={i}
+            className="mobile-star"
+            style={{
+              left: star.left,
+              top: star.top,
+              "--star-size": `${star.size}px`,
+              "--star-duration": `${star.duration}s`,
+              "--star-delay": `${star.delay}s`,
+              "--star-opacity": star.opacity,
+            } as React.CSSProperties}
+          />
+        ))}
+      </div>
+
       {/* Hero */}
-      <section className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden z-[1]">
         <div className="text-center max-w-3xl relative z-10">
           <p className="text-sm tracking-[0.3em] uppercase mb-6 text-blue-400/70">
             Full-Stack Developer
@@ -42,9 +103,14 @@ export default function MobilePage() {
       <div className="section-divider max-w-4xl mx-auto" />
 
       {/* About */}
-      <section id="about-m" className="py-20 px-4">
+      <section
+        id="about-m"
+        data-reveal
+        className={sectionClass("about-m", "py-20 px-4")}
+      >
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-4 mb-10">
+          <div className="flex items-center justify-center gap-4 mb-10 section-header">
+            <div className="section-header-aura" />
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/50" />
             <h2 className="text-3xl font-bold">
               About <span className="gradient-text">Me</span>
@@ -81,9 +147,14 @@ export default function MobilePage() {
       <div className="section-divider max-w-4xl mx-auto" />
 
       {/* Skills */}
-      <section id="skills-m" className="py-20 px-4">
+      <section
+        id="skills-m"
+        data-reveal
+        className={sectionClass("skills-m", "py-20 px-4")}
+      >
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-4 mb-10">
+          <div className="flex items-center justify-center gap-4 mb-10 section-header">
+            <div className="section-header-aura" />
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/50" />
             <h2 className="text-3xl font-bold">
               Tech <span className="gradient-text">Stack</span>
@@ -103,9 +174,14 @@ export default function MobilePage() {
       <div className="section-divider max-w-4xl mx-auto" />
 
       {/* Projects */}
-      <section id="projects-m" className="py-20 px-4">
+      <section
+        id="projects-m"
+        data-reveal
+        className={sectionClass("projects-m", "py-20 px-4")}
+      >
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-4 mb-10">
+          <div className="flex items-center justify-center gap-4 mb-10 section-header">
+            <div className="section-header-aura" />
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/50" />
             <h2 className="text-3xl font-bold">
               Featured <span className="gradient-text">Projects</span>
@@ -143,9 +219,14 @@ export default function MobilePage() {
       <div className="section-divider max-w-4xl mx-auto" />
 
       {/* Experience */}
-      <section id="experience-m" className="py-20 px-4">
+      <section
+        id="experience-m"
+        data-reveal
+        className={sectionClass("experience-m", "py-20 px-4")}
+      >
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-4 mb-10">
+          <div className="flex items-center justify-center gap-4 mb-10 section-header">
+            <div className="section-header-aura" />
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/50" />
             <h2 className="text-3xl font-bold">
               <span className="gradient-text">Experience</span>
@@ -182,9 +263,14 @@ export default function MobilePage() {
       <div className="section-divider max-w-4xl mx-auto" />
 
       {/* Contact */}
-      <section id="contact-m" className="py-20 px-4">
+      <section
+        id="contact-m"
+        data-reveal
+        className={sectionClass("contact-m", "py-20 px-4")}
+      >
         <div className="max-w-2xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-4 mb-10">
+          <div className="flex items-center justify-center gap-4 mb-10 section-header">
+            <div className="section-header-aura" />
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/50" />
             <h2 className="text-3xl font-bold">
               Get in <span className="gradient-text">Touch</span>
