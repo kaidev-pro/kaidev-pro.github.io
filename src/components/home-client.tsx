@@ -4,7 +4,6 @@ import { AnimatedBackground } from "@/components/animated-background";
 import { CosmicGlow } from "@/components/cosmic-glow";
 import { CustomCursor } from "@/components/custom-cursor";
 
-import { TypingEffect } from "@/components/typing-effect";
 import { ProjectCard } from "@/components/project-card";
 import { CosmicEnergy } from "@/components/cosmic-energy";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
@@ -23,10 +22,14 @@ import {
   Layers,
   Briefcase,
   ChevronUp,
+  MapPin,
+  FileText,
+  CheckCircle2,
+  Rocket,
 } from "lucide-react";
 
 const SKILLS = [
-  { name: "Self-taught", icon: Zap },
+  { name: "AI Agents", icon: Rocket },
   { name: "Next.js", icon: Code2 },
   { name: "TypeScript", icon: Code2 },
   { name: "Python", icon: Terminal },
@@ -35,28 +38,44 @@ const SKILLS = [
   { name: "PostgreSQL", icon: Database },
   { name: "Tailwind CSS", icon: Globe },
   { name: "Vercel", icon: Zap },
+  { name: "Telegram Bot API", icon: Send },
+];
+
+const TRUST_MARKERS = [
+  { label: "Live products shipped", value: "2" },
+  { label: "Autonomous agents built", value: "15+" },
+  { label: "Core stack", value: "Next.js / FastAPI" },
+  { label: "Timezone", value: "Japan (JST)" },
+];
+
+const HIRE_SIGNALS = [
+  "Ships complete product flows from UI to backend APIs, database, Docker, and deploy.",
+  "Builds AI automation with multi-provider LLMs, Telegram workflows, and production monitoring.",
+  "Comfortable turning vague product ideas into working MVPs with practical, minimal code.",
 ];
 
 const PROJECTS = [
   {
     title: "8Agents",
-    desc: "AI Agent SaaS platform. 15+ autonomous agents with real-time task delegation, multi-provider AI integration (OpenAI, Anthropic, local models), and production monitoring via Telegram.",
+    desc: "Production AI-agent SaaS platform with 15+ autonomous agents, real-time task delegation, multi-provider AI integration, and Telegram-based monitoring for operations.",
     tech: ["Next.js", "FastAPI", "Docker", "PostgreSQL", "Redis", "Telegram Bot API"],
     url: "https://8agents.xyz",
     logo: "/logos/8agents.svg",
     accent: "#f97316",
     accentRgb: "249,115,22",
     status: "LIVE",
+    impact: ["15+ agents", "Multi-provider AI", "Telegram ops"],
   },
   {
     title: "RakuSaku",
-    desc: "Game top-up & digital services marketplace. Payment gateway integration (QRIS, e-wallets, bank transfer), automated supplier fulfillment via Digiflazz API, and admin dashboard.",
+    desc: "Digital services marketplace with payment gateway integration, automated supplier fulfillment through Digiflazz, and admin workflows for managing orders.",
     tech: ["Next.js", "FastAPI", "PostgreSQL", "Digiflazz API", "Duitku"],
     url: "https://rakusaku.com",
     logo: "/logos/rakusaku.svg",
     accent: "#ec4899",
     accentRgb: "236,72,153",
     status: "LIVE",
+    impact: ["Payments", "Supplier API", "Admin dashboard"],
   },
 ];
 
@@ -150,7 +169,6 @@ export default function HomeClient() {
     offset: ["start start", "end start"],
   });
   const heroBgY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
   return (
@@ -162,7 +180,7 @@ export default function HomeClient() {
       <BackToTop />
 
       {/* Hero */}
-      <section ref={heroRef} className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
+      <section ref={heroRef} className="min-h-[92vh] py-24 flex items-center justify-center px-4 relative overflow-hidden">
         {/* Parallax background elements */}
         <motion.div
           className="absolute inset-0 pointer-events-none"
@@ -199,12 +217,12 @@ export default function HomeClient() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.p
-            className="text-sm tracking-[0.3em] uppercase mb-6 text-blue-400/70"
+            className="text-sm tracking-[0.24em] uppercase mb-6 text-blue-400/80"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <TypingEffect />
+            Full-Stack Developer · AI Automation · Product Builder
           </motion.p>
           <motion.h1
             className="text-5xl md:text-7xl font-black mb-6 hero-name leading-tight"
@@ -214,28 +232,36 @@ export default function HomeClient() {
             <span className="inline-block">Wicaksono</span>
           </motion.h1>
           <Reveal>
-            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-[1.8]">
-              Full-stack developer who rapidly masters new technologies to ship AI-powered platforms.
-              <br />
-              Founder of{" "}
-              <a href="https://8agents.xyz" target="_blank" className="text-orange-400 hover:text-orange-300 underline underline-offset-4">
-                8Agents
-              </a>{" "}
-              &{" "}
-              <a href="https://rakusaku.com" target="_blank" className="text-pink-400 hover:text-pink-300 underline underline-offset-4">
-                RakuSaku
-              </a>
-              .
-            </p>
+            <div className="mb-8 space-y-4">
+              <p className="text-xl md:text-2xl text-slate-200 leading-[1.55] font-medium">
+                I build production-ready web apps, AI automations, and SaaS workflows from idea to deploy.
+              </p>
+              <p className="text-base md:text-lg text-slate-400 leading-[1.8]">
+                Founder of <a href="https://8agents.xyz" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 underline underline-offset-4">8Agents</a> and <a href="https://rakusaku.com" target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:text-pink-300 underline underline-offset-4">RakuSaku</a>. Based in Japan, open to remote full-stack, product engineer, and AI automation roles.
+              </p>
+            </div>
           </Reveal>
           <Reveal>
             <div className="flex gap-4 justify-center flex-wrap">
               <a href="#projects" className="btn-primary px-6 py-3 rounded-xl text-white font-medium">
                 <span>View Projects</span>
               </a>
+              <a href="https://www.linkedin.com/in/bagus-wiranto-wicaksono-1ba320301" target="_blank" rel="noopener noreferrer" className="btn-outline px-6 py-3 rounded-xl text-white font-medium">
+                LinkedIn
+              </a>
               <a href="#contact" className="btn-outline px-6 py-3 rounded-xl text-white font-medium">
                 Contact Me
               </a>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-10 max-w-3xl mx-auto">
+              {TRUST_MARKERS.map((item) => (
+                <div key={item.label} className="glass-card rounded-2xl px-4 py-3 text-left">
+                  <p className="text-lg font-bold gradient-text">{item.value}</p>
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 mt-1">{item.label}</p>
+                </div>
+              ))}
             </div>
           </Reveal>
         </motion.div>
@@ -276,13 +302,21 @@ export default function HomeClient() {
                   </div>
                   <div>
                     <p className="text-slate-300 leading-[1.8] mb-4">
-                      I&apos;m a self-taught full-stack developer and entrepreneur based in Japan, driven by curiosity and a hunger to learn. I thrive on rapidly acquiring new skills and technologies — then turning them into production-ready products that solve real problems.
+                      I&apos;m a self-taught full-stack developer based in Japan, focused on building practical products that connect polished frontend UX with reliable backend systems and AI automation.
                     </p>
-                    <p className="text-slate-300 leading-[1.8] mb-4">
-                      From zero to production in months: I mastered Next.js, FastAPI, Docker, and Telegram Bot API to build <strong className="text-orange-400">8Agents</strong> (AI Agent marketplace) and <strong className="text-pink-400">RakuSaku</strong> (digital services marketplace) — two SaaS platforms now live and serving users.
+                    <p className="text-slate-300 leading-[1.8] mb-5">
+                      I shipped <strong className="text-orange-400">8Agents</strong>, an AI-agent SaaS platform, and <strong className="text-pink-400">RakuSaku</strong>, a digital services marketplace with payment and supplier integrations. I like small teams, clear outcomes, and production-minded engineering.
                     </p>
+                    <div className="grid gap-3 mb-5">
+                      {HIRE_SIGNALS.map((signal) => (
+                        <div key={signal} className="flex items-start gap-3 text-sm text-slate-300">
+                          <CheckCircle2 className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
+                          <span>{signal}</span>
+                        </div>
+                      ))}
+                    </div>
                     <p className="text-slate-400 text-sm flex items-center gap-2">
-                      Based in Japan 🇯🇵 · Open to collaboration
+                      <MapPin className="w-4 h-4 text-blue-400" /> Based in Japan (JST) · Open to remote USD opportunities
                       <InfinityDecor size="1.2rem" className="opacity-30" />
                     </p>
                   </div>
@@ -345,6 +379,7 @@ export default function HomeClient() {
                   accent={project.accent}
                   accentRgb={project.accentRgb}
                   status={project.status}
+                  impact={project.impact}
                   hovered={hoveredProject === project.title}
                   onHover={(h) => setHoveredProject(h ? project.title : null)}
                 />
@@ -405,11 +440,20 @@ export default function HomeClient() {
           </SectionHeader>
           <Reveal>
             <p className="text-slate-300 mb-8 leading-[1.8]">
-              Open to remote opportunities. Let&apos;s build something great together.
+              Open to remote full-stack, product engineer, and AI automation roles. Best fit: teams shipping SaaS, internal tools, automation, or AI-enabled products.
             </p>
           </Reveal>
           <Reveal>
             <div className="flex justify-center gap-4 flex-wrap">
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2 spatial-hover"
+              >
+                <FileText className="w-4 h-4" />
+                Resume
+              </a>
               <a
                 href="mailto:baguswirantowicaksono@gmail.com"
                 className="btn-outline px-5 py-3 rounded-xl text-white font-medium flex items-center gap-2 spatial-hover"

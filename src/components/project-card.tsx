@@ -13,6 +13,7 @@ interface ProjectCardProps {
   accent: string;
   accentRgb: string;
   status?: string;
+  impact?: string[];
   hovered: boolean;
   onHover: (hovered: boolean) => void;
 }
@@ -26,6 +27,7 @@ export function ProjectCard({
   accent,
   accentRgb,
   status = "LIVE",
+  impact = [],
   hovered,
   onHover,
 }: ProjectCardProps) {
@@ -150,6 +152,16 @@ export function ProjectCard({
         <p className="text-sm text-slate-400 mb-5 leading-[1.7] relative z-10 group-hover:text-slate-300 transition-colors duration-300">
           {desc}
         </p>
+
+        {impact.length > 0 && (
+          <div className="grid grid-cols-3 gap-2 mb-5 relative z-10">
+            {impact.map((item) => (
+              <div key={item} className="rounded-lg px-2 py-2 text-center" style={{ background: `rgba(${accentRgb}, 0.06)`, border: `1px solid rgba(${accentRgb}, 0.12)` }}>
+                <span className="text-[11px] font-semibold" style={{ color: accent }}>{item}</span>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Tech stack */}
         <div className="flex flex-wrap gap-2 relative z-10">

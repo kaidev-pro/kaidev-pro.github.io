@@ -64,10 +64,10 @@ export default function MobilePage() {
       </div>
 
       {/* Hero */}
-      <section className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden z-[1]">
+      <section className="min-h-[92vh] py-24 flex items-center justify-center px-4 relative overflow-hidden z-[1]">
         <div className="text-center max-w-3xl relative z-10">
-          <p className="text-sm tracking-[0.3em] uppercase mb-6 text-blue-400/70">
-            Full-Stack Developer
+          <p className="text-sm tracking-[0.24em] uppercase mb-6 text-blue-400/80">
+            Full-Stack Developer · AI Automation
           </p>
           <h1 className="text-5xl font-black mb-6 hero-name leading-tight">
             <span className="inline-block">Bagus Wiranto</span>
@@ -76,7 +76,7 @@ export default function MobilePage() {
           </h1>
           <div>
             <p className="text-lg md:text-xl text-slate-300 mb-8 leading-[1.8]">
-              Full-stack developer who rapidly masters new technologies to ship AI-powered platforms.
+              I build production-ready web apps, AI automations, and SaaS workflows from idea to deploy.
               <br />
               Founder of{" "}
               <a href="https://8agents.xyz" target="_blank" className="text-orange-400 underline underline-offset-4">
@@ -86,12 +86,28 @@ export default function MobilePage() {
               <a href="https://rakusaku.com" target="_blank" className="text-pink-400 underline underline-offset-4">
                 RakuSaku
               </a>
-              .
+              . Based in Japan, open to remote USD roles.
             </p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 mb-8">
+            {[
+              ["2", "Live products"],
+              ["15+", "AI agents"],
+              ["JST", "Timezone"],
+              ["Remote", "Available"],
+            ].map(([value, label]) => (
+              <div key={label} className="glass-card rounded-2xl px-4 py-3 text-left">
+                <p className="text-lg font-bold gradient-text">{value}</p>
+                <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 mt-1">{label}</p>
+              </div>
+            ))}
           </div>
           <div className="flex gap-4 justify-center flex-wrap">
             <a href="#projects-m" className="btn-primary px-6 py-3 rounded-xl text-white font-medium">
               View Projects
+            </a>
+            <a href="https://www.linkedin.com/in/bagus-wiranto-wicaksono-1ba320301" target="_blank" rel="noopener noreferrer" className="btn-outline px-6 py-3 rounded-xl text-white font-medium">
+              LinkedIn
             </a>
             <a href="#contact-m" className="btn-outline px-6 py-3 rounded-xl text-white font-medium">
               Contact Me
@@ -130,13 +146,13 @@ export default function MobilePage() {
               </div>
               <div className="text-center">
                 <p className="text-slate-300 leading-[1.8] mb-4">
-                  I&apos;m a self-taught full-stack developer and entrepreneur based in Japan, driven by curiosity and a hunger to learn. I thrive on rapidly acquiring new skills and technologies — then turning them into production-ready products that solve real problems.
+                  I&apos;m a self-taught full-stack developer based in Japan, focused on practical products that connect polished frontend UX with reliable backend systems and AI automation.
                 </p>
                 <p className="text-slate-300 leading-[1.8] mb-4">
-                  From zero to production in months: I mastered Next.js, FastAPI, Docker, and Telegram Bot API to build <strong className="text-orange-400">8Agents</strong> (AI Agent marketplace) and <strong className="text-pink-400">RakuSaku</strong> (digital services marketplace) — two SaaS platforms now live and serving users.
+                  I shipped <strong className="text-orange-400">8Agents</strong>, an AI-agent SaaS platform, and <strong className="text-pink-400">RakuSaku</strong>, a digital services marketplace with payment and supplier integrations.
                 </p>
                 <p className="text-slate-400 text-sm">
-                  Based in Japan 🇯🇵 · Open to collaboration
+                  Based in Japan (JST) · Open to remote USD opportunities
                 </p>
               </div>
             </div>
@@ -162,7 +178,7 @@ export default function MobilePage() {
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-blue-400/50" />
           </div>
           <div className="flex flex-wrap justify-center gap-3">
-            {["Self-taught", "Next.js", "TypeScript", "Python", "FastAPI", "Docker", "PostgreSQL", "Tailwind CSS", "Vercel"].map((skill) => (
+            {["AI Agents", "Next.js", "TypeScript", "Python", "FastAPI", "Docker", "PostgreSQL", "Tailwind CSS", "Vercel", "Telegram Bot API"].map((skill) => (
               <div key={skill} className="glass-card rounded-xl px-4 py-2.5">
                 <span className="text-sm font-medium">{skill}</span>
               </div>
@@ -190,8 +206,8 @@ export default function MobilePage() {
           </div>
           <div className="grid gap-4">
             {[
-              { title: "8Agents", desc: "AI Agent SaaS platform. 15+ autonomous agents with real-time task delegation, multi-provider AI integration (OpenAI, Anthropic, local models), and production monitoring via Telegram.", url: "https://8agents.xyz", accent: "#f97316", status: "LIVE", logo: "/logos/8agents.svg" },
-              { title: "RakuSaku", desc: "Game top-up & digital services marketplace. Payment gateway integration (QRIS, e-wallets, bank transfer), automated supplier fulfillment via Digiflazz API, and admin dashboard.", url: "https://rakusaku.com", accent: "#ec4899", status: "LIVE", logo: "/logos/rakusaku.svg" },
+              { title: "8Agents", desc: "Production AI-agent SaaS platform with 15+ autonomous agents, real-time task delegation, multi-provider AI integration, and Telegram-based monitoring.", url: "https://8agents.xyz", accent: "#f97316", status: "LIVE", logo: "/logos/8agents.svg", impact: ["15+ agents", "Multi-provider AI", "Telegram ops"] },
+              { title: "RakuSaku", desc: "Digital services marketplace with payment gateway integration, automated supplier fulfillment through Digiflazz, and admin workflows for managing orders.", url: "https://rakusaku.com", accent: "#ec4899", status: "LIVE", logo: "/logos/rakusaku.svg", impact: ["Payments", "Supplier API", "Admin dashboard"] },
             ].map((project) => (
               <a
                 key={project.title}
@@ -209,7 +225,14 @@ export default function MobilePage() {
                     <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: project.accent + "20", color: project.accent }}>{project.status}</span>
                   </div>
                 </div>
-                <p className="text-slate-400 text-sm leading-relaxed">{project.desc}</p>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">{project.desc}</p>
+                <div className="grid grid-cols-3 gap-2">
+                  {project.impact.map((item) => (
+                    <span key={item} className="text-[10px] text-center rounded-lg px-2 py-2" style={{ background: project.accent + "14", color: project.accent }}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </a>
             ))}
           </div>
@@ -278,7 +301,7 @@ export default function MobilePage() {
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-blue-400/50" />
           </div>
           <p className="text-slate-300 mb-8 leading-[1.8]">
-            Open to remote opportunities. Let&apos;s build something great together.
+            Open to remote full-stack, product engineer, and AI automation roles. Best fit: SaaS, internal tools, automation, or AI-enabled products.
           </p>
           <div className="flex justify-center gap-3 flex-wrap">
             {[
