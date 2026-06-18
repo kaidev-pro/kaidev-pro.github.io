@@ -117,7 +117,7 @@ function Navigation() {
         }`}
       >
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="text-xl font-bold font-serif tracking-tight text-foreground">
+          <a href="#" className="text-xl font-bold font-heading tracking-tight text-foreground">
             KAI<span className="text-primary">.</span>
           </a>
           <div className="hidden md:flex items-center gap-8">

@@ -10,7 +10,7 @@
   --muted: #8FA3BF;
   --font-heading: 'Oswald', sans-serif;
   --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+
 }
 
 @theme inline {
@@ -20,8 +20,7 @@
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --font-sans: var(--font-body);
-  --font-serif: var(--font-heading);
-  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
 }
 
 /* ============================================

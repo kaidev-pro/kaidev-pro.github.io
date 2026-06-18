@@ -61,7 +61,7 @@ export default function MobilePage() {
           </div>
 
           {/* Name */}
-          <h1 className="text-[4.5rem] leading-[0.9] font-bold mb-4 font-serif tracking-tight hero-name">
+          <h1 className="text-[4.5rem] leading-[0.9] font-bold mb-4 font-heading tracking-tight hero-name">
             I AM
             <br />
             KAI
@@ -119,7 +119,7 @@ export default function MobilePage() {
         <div className="max-w-xl mx-auto">
           <div className="mb-8">
             <span className="text-[10px] tracking-[0.3em] uppercase text-muted font-bold">02 — Biography</span>
-            <h2 className="text-3xl font-bold font-serif text-foreground mt-1">
+            <h2 className="text-3xl font-bold font-heading text-foreground mt-1">
               ABOUT <span className="gradient-text">ME</span>
             </h2>
           </div>
@@ -151,7 +151,7 @@ export default function MobilePage() {
         <div className="max-w-xl mx-auto">
           <div className="mb-8">
             <span className="text-[10px] tracking-[0.3em] uppercase text-muted font-bold">03 — Expertise</span>
-            <h2 className="text-3xl font-bold font-serif text-foreground mt-1">
+            <h2 className="text-3xl font-bold font-heading text-foreground mt-1">
               TECH <span className="gradient-text">STACK</span>
             </h2>
           </div>
@@ -173,7 +173,7 @@ export default function MobilePage() {
         <div className="max-w-xl mx-auto">
           <div className="mb-8">
             <span className="text-[10px] tracking-[0.3em] uppercase text-muted font-bold">04 — Portfolio</span>
-            <h2 className="text-3xl font-bold font-serif text-foreground mt-1">
+            <h2 className="text-3xl font-bold font-heading text-foreground mt-1">
               FEATURED <span className="gradient-text">PROJECTS</span>
             </h2>
           </div>
@@ -213,7 +213,7 @@ export default function MobilePage() {
         <div className="max-w-xl mx-auto">
           <div className="mb-8">
             <span className="text-[10px] tracking-[0.3em] uppercase text-muted font-bold">05 — Experience</span>
-            <h2 className="text-3xl font-bold font-serif text-foreground mt-1">
+            <h2 className="text-3xl font-bold font-heading text-foreground mt-1">
               <span className="gradient-text">EXPERIENCE</span>
             </h2>
           </div>
@@ -251,7 +251,7 @@ export default function MobilePage() {
         <div className="max-w-xl mx-auto text-center">
           <div className="mb-8">
             <span className="text-[10px] tracking-[0.3em] uppercase text-muted font-bold">06 — Networking</span>
-            <h2 className="text-3xl font-bold font-serif text-foreground mt-1">
+            <h2 className="text-3xl font-bold font-heading text-foreground mt-1">
               READY TO <span className="gradient-text">COLLABORATE?</span>
             </h2>
           </div>

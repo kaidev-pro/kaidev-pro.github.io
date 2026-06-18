@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Oswald, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Oswald, DM_Sans } from "next/font/google";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -14,12 +14,6 @@ const dmSans = DM_Sans({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
 export const metadata: Metadata = {
   title: "Kai — Developer & Entrepreneur",
   description: "Full-stack developer. Founder of 8Agents & RakuSaku. Building production-ready web apps, AI automations, and SaaS workflows.",
@@ -32,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${oswald.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${oswald.variable} ${dmSans.variable}`}>
       <head>
         <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
