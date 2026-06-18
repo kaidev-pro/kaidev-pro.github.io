@@ -229,20 +229,31 @@ export default function HomeClient() {
       <BackToTop />
 
       {/* ─── Hero ─── */}
-      <section className="min-h-[92vh] py-24 flex items-center justify-center px-4 relative overflow-hidden bg-gradient-to-b from-background via-background to-sky-50/30">
-        <BackgroundPaths />
-        {/* Soft glow overlay */}
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full opacity-10 pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(126,200,227,0.4) 0%, transparent 70%)", filter: "blur(60px)" }}
+      <section className="min-h-[92vh] py-24 flex items-center justify-center px-4 relative overflow-hidden">
+        {/* Gradient mesh background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 w-[700px] h-[700px] rounded-full opacity-30"
+            style={{ background: "radial-gradient(circle, rgba(126,200,227,0.5) 0%, transparent 60%)", filter: "blur(80px)" }}
+          />
+          <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full opacity-20"
+            style={{ background: "radial-gradient(circle, rgba(91,155,213,0.4) 0%, transparent 60%)", filter: "blur(60px)" }}
+          />
+          <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] rounded-full opacity-15"
+            style={{ background: "radial-gradient(circle, rgba(126,200,227,0.3) 0%, transparent 60%)", filter: "blur(50px)" }}
+          />
+        </div>
+        {/* Grid dots pattern */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          style={{ backgroundImage: "radial-gradient(circle, #1A2332 1px, transparent 1px)", backgroundSize: "32px 32px" }}
         />
-
+        <BackgroundPaths />
         <div className="text-center max-w-3xl relative z-10">
           <p className="text-sm tracking-[0.24em] uppercase mb-6 text-primary font-medium">
             Full-Stack Developer · AI Automation · Product Builder
           </p>
-          <h1 className="text-6xl md:text-8xl font-bold mb-8 hero-name leading-[1.1] font-serif">
-            <LetterReveal text="KAI" />
-          </h1>
+      <h1 className="text-[8rem] md:text-[12rem] lg:text-[14rem] font-bold mb-8 hero-name leading-[0.85] font-serif tracking-tighter">
+        <LetterReveal text="KAI" />
+      </h1>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -346,20 +357,29 @@ export default function HomeClient() {
       <div className="section-divider max-w-4xl mx-auto" />
 
       {/* ─── Skills ─── */}
-      <section id="skills" data-reveal className={sectionClass("skills", "py-28 px-4")} style={{ background: "rgba(126, 200, 227, 0.04)" }}>
+      <section id="skills" data-reveal className={sectionClass("skills", "py-28 px-4")} style={{ background: "linear-gradient(180deg, #0F1729 0%, #162033 100%)" }}>
+        <div className="absolute inset-0 pointer-events-none opacity-[0.02]"
+          style={{ backgroundImage: "radial-gradient(circle, #7EC8E3 1px, transparent 1px)", backgroundSize: "24px 24px" }}
+        />
         <div className="max-w-4xl mx-auto">
-          <SectionHeader eyebrow="03 — Expertise">
-            Tech <span className="gradient-text">Stack</span>
-          </SectionHeader>
+          <div className="flex flex-col items-center justify-center gap-2 mb-16">
+            <span className="text-[10px] tracking-[0.4em] uppercase text-sky-300/60 font-bold mb-1">
+              03 — Expertise
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif text-center text-white">
+              Tech <span className="gradient-text">Stack</span>
+            </h2>
+            <div className="mt-4 h-px w-24 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {SKILLS.map((skill) => (
               <div
                 key={skill.name}
-                className="skill-card glass-card rounded-2xl p-5 text-center"
+                className="skill-card rounded-2xl p-5 text-center backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 hover:border-sky-400/30 transition-all"
               >
-                <span className="text-xs text-muted font-bold mb-2 block">{skill.num}</span>
-                <skill.icon className="w-5 h-5 text-primary mx-auto mb-2" />
-                <span className="text-sm font-medium text-foreground">{skill.name}</span>
+                <span className="text-xs text-sky-300/50 font-bold mb-2 block">{skill.num}</span>
+                <skill.icon className="w-5 h-5 text-sky-400 mx-auto mb-2" />
+                <span className="text-sm font-medium text-white">{skill.name}</span>
               </div>
             ))}
           </div>
@@ -416,19 +436,28 @@ export default function HomeClient() {
       <div className="section-divider max-w-4xl mx-auto" />
 
       {/* ─── Experience ─── */}
-      <section id="experience" data-reveal className={sectionClass("experience", "py-28 px-4")} style={{ background: "rgba(126, 200, 227, 0.04)" }}>
+      <section id="experience" data-reveal className={sectionClass("experience", "py-28 px-4")} style={{ background: "linear-gradient(180deg, #162033 0%, #0F1729 100%)" }}>
+        <div className="absolute inset-0 pointer-events-none opacity-[0.02]"
+          style={{ backgroundImage: "radial-gradient(circle, #7EC8E3 1px, transparent 1px)", backgroundSize: "24px 24px" }}
+        />
         <div className="max-w-4xl mx-auto">
-          <SectionHeader eyebrow="05 — Journey">
-            <span className="gradient-text">Experience</span>
-          </SectionHeader>
-          <div className="glass-card rounded-2xl p-6 md:p-8">
+          <div className="flex flex-col items-center justify-center gap-2 mb-16">
+            <span className="text-[10px] tracking-[0.4em] uppercase text-sky-300/60 font-bold mb-1">
+              05 — Journey
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif text-center text-white">
+              <span className="gradient-text">Experience</span>
+            </h2>
+            <div className="mt-4 h-px w-24 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+          </div>
+          <div className="rounded-2xl p-6 md:p-8 backdrop-blur-md bg-white/5 border border-white/10">
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(249,115,22,0.1)" }}>
                   <ExternalLink className="w-5 h-5 text-orange-500" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-foreground">Founder & Developer</h3>
+                  <h3 className="font-bold text-white">Founder & Developer</h3>
                   <p className="text-orange-500 text-sm">8Agents · 2026 - Present</p>
                   <p className="text-muted text-sm mt-1">AI Agent SaaS platform for real work via Telegram</p>
                 </div>
@@ -438,7 +467,7 @@ export default function HomeClient() {
                   <ExternalLink className="w-5 h-5 text-pink-500" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-foreground">Founder & Developer</h3>
+                  <h3 className="font-bold text-white">Founder & Developer</h3>
                   <p className="text-pink-500 text-sm">RakuSaku · 2026 - Present</p>
                   <p className="text-muted text-sm mt-1">Game top-up & digital services marketplace</p>
                 </div>
