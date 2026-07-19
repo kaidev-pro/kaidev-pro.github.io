@@ -62,7 +62,8 @@ export default function Home() {
         <span><b>STATUS</b> — Open to interesting collaborations</span>
       </section>
 
-      <section id="work" className="section">
+      <section id="work" className="section blueprint-section">
+        <div className="module-label" aria-hidden="true"><span>MODULE 01</span><span>SELECTED WORK</span></div>
         <div className="section-head"><p className="eyebrow">SELECTED WORK</p><h2>Real products, honest status, clear proof.</h2></div>
         <div className="project-grid">
           {projects.map((p, i) => <article className={`project ${i === 0 ? "featured" : ""}`} key={p.name}>
