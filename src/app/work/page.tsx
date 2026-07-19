@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 const work = [
   ["8Agents", "AI Product", "Building", "/logos/8agents-128.webp", "A structured platform for learning, designing, and developing AI agents.", "https://8agents.xyz"],
-  ["8Router", "Developer Tool", "Beta / Active Development", "/logos/8router-64.svg", "An OpenAI-compatible gateway for routing, fallback, credentials, and multi-provider AI access.", "https://8router.8agents.xyz"],
+  ["8Router", "Developer Tool", "Beta / Active Development", "/logos/8router-icon.png", "An OpenAI-compatible gateway for routing, fallback, credentials, and multi-provider AI access.", "https://8router.8agents.xyz"],
   ["NihongoGate", "Education Product", "Active Development", "/logos/nihongogate-64.svg", "A Japanese and SSW learning platform built around practical learning workflows.", "https://nihongogate.kaidevlab.com"],
   ["Rakusaku", "Digital Commerce Prototype", "Prototype — Payment Integration Pending", "/logos/rakusaku-128.webp", "A game top-up prototype exploring commerce architecture and playful branding.", "https://rakusaku.com"],
   ["Kai Revengers", "Creative AI", "Series in Production", "/logos/kai-revengers-64.svg", "A visual storytelling experiment with AI-assisted production."],
