@@ -42,11 +42,17 @@ export default function Home() {
           <div className="actions"><a className="primary" href="#work">Explore My Work</a><a className="secondary" href="#about">Meet Kai</a></div>
           <p className="meta">Based in Japan · Building independently</p>
         </div>
-        <div className="media-panel" aria-label="Kai holographic coding hero video">
-          <video width="1280" height="720" autoPlay muted loop playsInline preload="metadata" poster="/media/kai-hero/kai-hero-poster.webp" aria-hidden="true">
-            <source src="/media/kai-hero/kai-hero.webm" type="video/webm" />
-            <source src="/media/kai-hero/kai-hero.mp4" type="video/mp4" />
-          </video>
+        <div className="hero-visual">
+          <div className="lab-orbit orbit-one" aria-hidden="true" />
+          <div className="lab-orbit orbit-two" aria-hidden="true" />
+          <div className="media-panel" aria-label="Kai holographic coding hero video">
+            <div className="panel-topline" aria-hidden="true"><span>KAIDEVLAB / LIVE LOOP</span><span>16:9 · NO CROP</span></div>
+            <video width="1280" height="720" autoPlay muted loop playsInline preload="metadata" poster="/media/kai-hero/kai-hero-poster.webp" aria-hidden="true">
+              <source src="/media/kai-hero/kai-hero.webm" type="video/webm" />
+              <source src="/media/kai-hero/kai-hero.mp4" type="video/mp4" />
+            </video>
+            <div className="panel-readout" aria-hidden="true"><span className="dot" />DAYLIGHT LAB ACTIVE</div>
+          </div>
         </div>
       </section>
 
