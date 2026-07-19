@@ -1,2 +1,9 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-export default function Work(){return <main className="section"><p className="eyebrow">WORK</p><h1>Products, AI systems, developer tools, education, creative experiments.</h1><p>Filters: All · Products · AI Systems · Developer Tools · Education · Creative · Experiments</p><a className="secondary" href="/">Back Home</a></main>}
+const work = [
+  ["8Agents", "AI Product", "Building", "/logos/8agents-128.webp", "A structured platform for learning, designing, and developing AI agents."],
+  ["8Router", "Developer Tool", "Beta / Active Development", "/logos/8router-64.svg", "An OpenAI-compatible gateway for routing, fallback, credentials, and multi-provider AI access."],
+  ["NihongoGate", "Education Product", "Active Development", "/logos/nihongogate-64.svg", "A Japanese and SSW learning platform built around practical learning workflows."],
+  ["Rakusaku", "Digital Commerce Prototype", "Prototype — Payment Integration Pending", "/logos/rakusaku-128.webp", "A game top-up prototype exploring commerce architecture and playful branding."],
+  ["Kai Revengers", "Creative AI", "Series in Production", "/logos/kai-revengers-64.svg", "A visual storytelling experiment with AI-assisted production."],
+];
+export default function Work(){return <main className="section"><p className="eyebrow">WORK</p><h1>Products, AI systems, developer tools, education, creative experiments.</h1><p>Filters: All · Products · AI Systems · Developer Tools · Education · Creative · Experiments</p><div className="project-grid">{work.map(([name,category,status,logo,summary])=><article className="project" key={name}><div className="thumb project-visual"><div className="visual-grid" aria-hidden="true"/><img src={logo} alt="" aria-hidden="true"/><div className="visual-lines" aria-hidden="true"><span/><span/><span/></div><strong>{name}</strong></div><p className="chip">{category}</p><h3>{name}</h3><p>{summary}</p><p className="status">{status}</p><a href={`/work/${name.toLowerCase().replaceAll(" ","-")}`}>View Project</a></article>)}</div><a className="secondary" href="/">Back Home</a></main>}

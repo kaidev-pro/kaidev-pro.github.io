@@ -3,10 +3,11 @@
 import { useState } from "react";
 
 const projects = [
-  { name: "8Agents", category: "AI Product", status: "Building", role: "Product, AI systems, frontend", summary: "A structured platform for learning, designing, and developing AI agents." },
-  { name: "8Router", category: "Developer Tool", status: "Beta / Active Development", role: "Architecture, routing, product", summary: "An OpenAI-compatible gateway for routing, fallback, credentials, and multi-provider AI access." },
-  { name: "NihongoGate", category: "Education Product", status: "Active Development", role: "Product engineering, learning design", summary: "A Japanese and SSW learning platform built around structured, practical learning workflows." },
-  { name: "Rakusaku", category: "Digital Commerce Prototype", status: "Prototype — Payment Integration Pending", role: "Commerce architecture, brand, UX", summary: "A game top-up platform exploring commerce architecture, product experience, and playful branding.", disclaimer: "The core platform and brand experience are in development. Payment gateway integration and live commerce operations are not yet active." },
+  { slug: "8agents", name: "8Agents", category: "AI Product", status: "Building", role: "Product, AI systems, frontend", summary: "A structured platform for learning, designing, and developing AI agents.", logo: "/logos/8agents-128.webp", stack: ["AI agents", "Learning workflows", "Product systems"], tone: "agent" },
+  { slug: "8router", name: "8Router", category: "Developer Tool", status: "Beta / Active Development", role: "Architecture, routing, product", summary: "An OpenAI-compatible gateway for routing, fallback, credentials, and multi-provider AI access.", logo: "/logos/8router-64.svg", stack: ["Model routing", "Fallback", "Credentials"], tone: "router" },
+  { slug: "nihongogate", name: "NihongoGate", category: "Education Product", status: "Active Development", role: "Product engineering, learning design", summary: "A Japanese and SSW learning platform built around structured, practical learning workflows.", logo: "/logos/nihongogate-64.svg", stack: ["Japanese", "SSW", "Learning paths"], tone: "education" },
+  { slug: "rakusaku", name: "Rakusaku", category: "Digital Commerce Prototype", status: "Prototype — Payment Integration Pending", role: "Commerce architecture, brand, UX", summary: "A game top-up platform exploring commerce architecture, product experience, and playful branding.", logo: "/logos/rakusaku-128.webp", stack: ["Commerce UX", "Catalog", "Prototype"], tone: "commerce", disclaimer: "The core platform and brand experience are in development. Payment gateway integration and live commerce operations are not yet active." },
+  { slug: "kai-revengers", name: "Kai Revengers", category: "Creative AI", status: "Series in Production", role: "Creative direction, story, AI-assisted production", summary: "A character-led visual storytelling experiment exploring cinematic pacing, edits, and AI-assisted production.", logo: "/logos/kai-revengers-64.svg", stack: ["Story", "Motion", "AI video"], tone: "creative" },
 ];
 
 const notes = [
@@ -77,15 +78,21 @@ export default function Home() {
         <div className="module-label" aria-hidden="true"><span>MODULE 01</span><span>SELECTED WORK</span></div>
         <div className="section-head"><p className="eyebrow">SELECTED WORK</p><h2>Real products, honest status, clear proof.</h2></div>
         <div className="project-grid">
-          {projects.map((p, i) => <article className={`project ${i === 0 ? "featured" : ""}`} key={p.name}>
-            <div className="thumb"><span>{p.name}</span></div><p className="chip">{p.category}</p><h3>{p.name}</h3><p>{p.summary}</p><p className="status">{p.status}</p><p className="role">Kai’s role: {p.role}</p>{p.disclaimer && <p className="disclaimer">{p.disclaimer}</p>}<a href={`/work/${p.name.toLowerCase().replace("8router", "8router").replace(" ", "-")}`}>View Project</a>
+          {projects.slice(0, 4).map((p, i) => <article className={`project ${i === 0 ? "featured" : ""} tone-${p.tone}`} key={p.name}>
+            <div className="thumb project-visual">
+              <div className="visual-grid" aria-hidden="true" />
+              <img src={p.logo} alt="" aria-hidden="true" />
+              <div className="visual-lines" aria-hidden="true"><span /><span /><span /></div>
+              <strong>{p.name}</strong>
+            </div>
+            <p className="chip">{p.category}</p><h3>{p.name}</h3><p>{p.summary}</p><p className="status">{p.status}</p><p className="role">Kai’s role: {p.role}</p><div className="stack">{p.stack.map(s => <span key={s}>{s}</span>)}</div>{p.disclaimer && <p className="disclaimer">{p.disclaimer}</p>}<a href={`/work/${p.slug}`}>View Project</a>
           </article>)}
         </div>
       </section>
 
       <section className="section split"><div><p className="eyebrow">WHAT I DO</p><h2>Build · Code · Create</h2></div><div className="capabilities">{["Product Engineering — From concept and architecture to interface, backend, deployment, and iteration.","AI Systems — AI agents, model routing, automation, prompt systems, and generative workflows.","Creative Direction — Brand identities, interface direction, digital characters, and content concepts.","Visual Storytelling — Video editing, cinematic pacing, subtitles, sound direction, and AI-assisted production."].map(x => <p key={x}>{x}</p>)}</div></section>
 
-      <section className="section lab"><p className="eyebrow">CREATIVE LAB</p><h2>Kai character development, brand motion, AI-assisted visual production, and Kai Revengers.</h2><p className="status inline">Kai Revengers — Series in Production</p></section>
+      <section className="section lab"><p className="eyebrow">CREATIVE LAB</p><h2>Kai character development, brand motion, AI-assisted visual production, and Kai Revengers.</h2><div className="creative-strip"><img src="/logos/kai-revengers-64.svg" alt="" aria-hidden="true" /><div><p className="status inline">Kai Revengers — Series in Production</p><p>Not treated as flagship until episodes, trailer, and project case study are ready.</p></div></div></section>
 
       <section className="section split"><div><p className="eyebrow">NOW BUILDING & LEARNING</p><h2>Kaidevlab is not a museum of finished work.</h2><p>It is a living record of what I’m building, learning, and improving.</p></div><ul><li>Building: 8Agents, 8Router, NihongoGate, Kaidevlab redesign</li><li>Learning: video editing, cinematic storytelling, AI-assisted filmmaking, product storytelling, creative direction</li></ul></section>
 
