@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Kaidevlab home"><span>K</span>Kaidevlab</a>
+        <a className="brand brand-logo" href="#top" aria-label="Kaidevlab home"><img className="logo-light" src="/brand/kaidevlab-logo-light.webp" alt="Kaidevlab" /><img className="logo-dark" src="/brand/kaidevlab-logo-dark.webp" alt="" aria-hidden="true" /></a>
         <nav aria-label="Primary navigation">
           <a href="#work">Work</a><a href="#notes">Lab Notes</a><a href="#about">About</a><a href="#contact">Contact</a>
         </nav>
@@ -84,7 +84,7 @@ export default function Home() {
 
       <section id="contact" className="section cta"><h2>Have an idea, collaboration, or interesting problem?</h2><p>Let’s explore what we can build together.</p><a className="primary" href="mailto:kai@kaidevlab.com">Start a Conversation</a></section>
 
-      <footer><a className="brand" href="#top"><span>K</span>Kaidevlab</a><p>Build · Code · Create</p><div><a href="https://x.com/Kiminoheroo">X</a><a href="https://github.com/">GitHub</a><a href="https://www.linkedin.com/">LinkedIn</a><a href="mailto:kai@kaidevlab.com">Email</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div><small>© 2026 Kaidevlab. The personal creative technology lab of Kai.</small></footer>
+      <footer><a className="brand brand-logo" href="#top" aria-label="Kaidevlab home"><img className="logo-light" src="/brand/kaidevlab-logo-light.webp" alt="Kaidevlab" /><img className="logo-dark" src="/brand/kaidevlab-logo-dark.webp" alt="" aria-hidden="true" /></a><p>Build · Code · Create</p><div><a href="https://x.com/Kiminoheroo">X</a><a href="https://github.com/">GitHub</a><a href="https://www.linkedin.com/">LinkedIn</a><a href="mailto:kai@kaidevlab.com">Email</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div><small>© 2026 Kaidevlab. The personal creative technology lab of Kai.</small></footer>
     </main>
   );
 }
