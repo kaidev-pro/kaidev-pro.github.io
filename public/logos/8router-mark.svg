@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="8Router">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="8" x2="56" y2="56"><stop stop-color="#F8FBFF"/><stop offset="1" stop-color="#E7F1FB"/></linearGradient>
+    <linearGradient id="stroke" x1="12" y1="16" x2="52" y2="48"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#6EE7F9"/></linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="3" y="3" width="58" height="58" rx="18" fill="url(#bg)" stroke="#4DA8FF" stroke-opacity=".45" stroke-width="2"/>
+  <path d="M20 21h12v22H20c-5 0-8-4-8-11s3-11 8-11Z" fill="none" stroke="url(#stroke)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 21h10c6 0 10 4 10 11s-4 11-10 11H32" fill="none" stroke="url(#stroke)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 32h15" stroke="#0F3180" stroke-opacity=".65" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="20" cy="32" r="3.8" fill="#2563EB" filter="url(#glow)"/>
+  <circle cx="47" cy="32" r="3.8" fill="#6EE7F9" filter="url(#glow)"/>
+</svg>
