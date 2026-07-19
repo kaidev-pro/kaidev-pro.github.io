@@ -40,15 +40,6 @@ export default function Home() {
           <path d="M180 170 H320 V245 H470" />
           <path d="M760 120 H900 V210 H1120" />
           <path d="M680 610 H840 V535 H1040" />
-          <circle cx="70" cy="520" r="5" />
-          <circle cx="230" cy="455" r="4" />
-          <circle cx="520" cy="395" r="5" />
-          <circle cx="180" cy="170" r="4" />
-          <circle cx="470" cy="245" r="5" />
-          <circle cx="760" cy="120" r="4" />
-          <circle cx="1120" cy="210" r="5" />
-          <circle cx="680" cy="610" r="4" />
-          <circle cx="1040" cy="535" r="5" />
         </svg>
         <div className="hero-copy">
           <p className="eyebrow">CREATIVE TECHNOLOGIST & INDEPENDENT BUILDER</p>
@@ -60,6 +51,28 @@ export default function Home() {
         <div className="hero-visual">
           <div className="lab-orbit orbit-one" aria-hidden="true" />
           <div className="lab-orbit orbit-two" aria-hidden="true" />
+          <svg className="metal-circuit" viewBox="0 0 1000 620" aria-hidden="true">
+            <defs>
+              <linearGradient id="metalGoldTrace" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#FFF3B0" />
+                <stop offset="35%" stopColor="#F6C76A" />
+                <stop offset="70%" stopColor="#B87918" />
+                <stop offset="100%" stopColor="#FFF3B0" />
+              </linearGradient>
+            </defs>
+            <path className="metal-main" d="M34 94 H132 V46 H230" />
+            <path className="metal-main" d="M766 46 H884 V94 H966" />
+            <path className="metal-main" d="M34 526 H132 V574 H230" />
+            <path className="metal-main" d="M766 574 H884 V526 H966" />
+            <path className="metal-main" d="M18 310 H86 V244 H150" />
+            <path className="metal-main" d="M982 310 H914 V376 H850" />
+            <path className="metal-highlight" d="M34 94 H132 V46 H230" />
+            <path className="metal-highlight" d="M766 46 H884 V94 H966" />
+            <circle className="metal-node" cx="230" cy="46" r="5" />
+            <circle className="metal-node" cx="766" cy="574" r="5" />
+            <circle className="metal-node" cx="150" cy="244" r="4" />
+            <circle className="metal-node" cx="850" cy="376" r="4" />
+          </svg>
           <div className="media-panel" aria-label="Kai holographic coding hero video">
             <div className="panel-topline" aria-hidden="true"><span>KAIDEVLAB / LIVE LOOP</span><span>16:9 · NO CROP</span></div>
             <video width="1280" height="720" autoPlay muted loop playsInline preload="metadata" poster="/media/kai-hero/kai-hero-poster.webp" aria-hidden="true">
