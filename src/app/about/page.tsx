@@ -1,0 +1,2 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
+export default function About(){return <main className="section about"><p className="eyebrow">ABOUT KAI</p><h1>I’m Kai, an independent builder based in Japan.</h1><p>I create digital products and explore how AI, design, code, and storytelling can work together to turn ideas into useful and memorable experiences.</p><a className="secondary" href="/">Back Home</a></main>}

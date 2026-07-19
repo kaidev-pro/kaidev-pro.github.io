@@ -1,0 +1,1 @@
+export default function Contact(){return <main className="section cta"><p className="eyebrow">CONTACT</p><h1>Have an idea, collaboration, or interesting problem?</h1><p>Let’s explore what we can build together.</p><a className="primary" href="mailto:kai@kaidevlab.com">Start a Conversation</a></main>}

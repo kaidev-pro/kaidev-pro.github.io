@@ -1,0 +1,2 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
+export async function generateStaticParams(){return ["behind-kaidevlab-redesign"].map(slug=>({slug}))} export default async function Note({params}:{params:Promise<{slug:string}>}){const {slug}=await params;return <main className="section"><p className="eyebrow">LAB NOTE</p><h1>{slug.replaceAll("-"," ")}</h1><p>MDX-ready article placeholder.</p><a className="secondary" href="/lab-notes/">Back to Notes</a></main>}

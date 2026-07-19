@@ -1,0 +1,1 @@
+export default function Terms(){return <main className="section"><p className="eyebrow">TERMS</p><h1>Terms</h1><p>Use Kaidevlab content and links responsibly.</p></main>}

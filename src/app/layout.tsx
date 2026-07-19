@@ -1,36 +1,53 @@
 import type { Metadata } from "next";
-import { Oswald, DM_Sans } from "next/font/google";
+import { Inter, Cinzel } from "next/font/google";
 import "./globals.css";
 
-const oswald = Oswald({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
+const inter = Inter({ variable: "--font-body", subsets: ["latin"] });
+const cinzel = Cinzel({ variable: "--font-display", subsets: ["latin"], weight: ["600", "700"] });
 
 export const metadata: Metadata = {
-  title: "Kai — Developer & Entrepreneur",
-  description: "Full-stack developer. Founder of 8Agents & RakuSaku. Building production-ready web apps, AI automations, and SaaS workflows.",
+  metadataBase: new URL("https://kaidevlab.com"),
+  title: "Kaidevlab — Kai’s Creative Technology Lab",
+  description:
+    "Kaidevlab is the personal creative technology lab of Kai, featuring digital products, AI systems, developer tools, learning platforms, and visual experiments.",
   icons: { icon: "/favicon.ico" },
+  openGraph: {
+    title: "Kaidevlab — Kai’s Creative Technology Lab",
+    description:
+      "Digital products, AI systems, developer tools, learning platforms, and visual experiments by Kai.",
+    url: "https://kaidevlab.com",
+    siteName: "Kaidevlab",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kaidevlab — Kai’s Creative Technology Lab",
+    description:
+      "Kai’s living creative technology lab for products, systems, experiments, and stories.",
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${oswald.variable} ${dmSans.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${cinzel.variable}`}>
       <head>
         <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {try {const saved = localStorage.getItem('theme'); const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; document.documentElement.dataset.theme = saved || system || 'light';} catch (_) {document.documentElement.dataset.theme = 'light';}})();`,
+          }}
+        />
       </head>
-      <body className="min-h-screen">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Kaidevlab",
+  url: "https://kaidevlab.com",
+  description: "The personal creative technology lab of Kai.",
+};
+void jsonLd;

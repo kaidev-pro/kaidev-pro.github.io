@@ -1,0 +1,1 @@
+export default function Privacy(){return <main className="section"><p className="eyebrow">PRIVACY</p><h1>Privacy Policy</h1><p>Kaidevlab avoids unnecessary sensitive data collection.</p></main>}

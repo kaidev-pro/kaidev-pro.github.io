@@ -1,0 +1,2 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
+export default function Work(){return <main className="section"><p className="eyebrow">WORK</p><h1>Products, AI systems, developer tools, education, creative experiments.</h1><p>Filters: All · Products · AI Systems · Developer Tools · Education · Creative · Experiments</p><a className="secondary" href="/">Back Home</a></main>}

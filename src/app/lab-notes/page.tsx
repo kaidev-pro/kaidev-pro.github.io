@@ -1,0 +1,2 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
+export default function Notes(){return <main className="section"><p className="eyebrow">LAB NOTES</p><h1>Articles, build logs, tutorials, reflections, and experiment reports.</h1><a className="secondary" href="/">Back Home</a></main>}
