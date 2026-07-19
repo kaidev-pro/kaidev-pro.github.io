@@ -35,6 +35,21 @@ export default function Home() {
       </header>
 
       <section id="top" className="hero section">
+        <svg className="pcb-trace hero-pcb" viewBox="0 0 1200 720" aria-hidden="true">
+          <path d="M70 520 H230 V455 H390 V395 H520" />
+          <path d="M180 170 H320 V245 H470" />
+          <path d="M760 120 H900 V210 H1120" />
+          <path d="M680 610 H840 V535 H1040" />
+          <circle cx="70" cy="520" r="5" />
+          <circle cx="230" cy="455" r="4" />
+          <circle cx="520" cy="395" r="5" />
+          <circle cx="180" cy="170" r="4" />
+          <circle cx="470" cy="245" r="5" />
+          <circle cx="760" cy="120" r="4" />
+          <circle cx="1120" cy="210" r="5" />
+          <circle cx="680" cy="610" r="4" />
+          <circle cx="1040" cy="535" r="5" />
+        </svg>
         <div className="hero-copy">
           <p className="eyebrow">CREATIVE TECHNOLOGIST & INDEPENDENT BUILDER</p>
           <h1>Building products, systems, and stories at the intersection of AI, code, and creativity.</h1>
