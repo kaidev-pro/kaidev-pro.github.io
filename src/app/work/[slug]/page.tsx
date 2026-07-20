@@ -1,4 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
 const projects = {
   "8agents": {
     title: "8Agents", category: "AI Product", status: "Building", role: "Product strategy, AI systems, frontend, learning workflow design", logo: "/logos/8agents-128.webp", liveUrl: "https://8agents.xyz", year: "2026", stack: ["Next.js", "TypeScript", "AI model APIs", "Learning design", "Content systems"],
@@ -45,34 +48,113 @@ const projects = {
     next: ["Finalize payment gateway requirements", "Improve order-state design", "Prepare compliance and operational checklist"]
   },
   "kai-revengers": {
-    title: "Kai Revengers", category: "Creative AI", status: "Series in Production", role: "Creative direction, story development, AI-assisted production, editing direction", logo: "/logos/kai-revengers-64.svg", year: "2026", stack: ["AI video", "Storyboarding", "Editing", "Character direction", "Visual production"],
-    summary: "A character-led visual storytelling experiment exploring cinematic pacing, edits, and AI-assisted production.",
-    problem: "AI-assisted video can look impressive but often lacks coherent story, pacing, and production discipline.",
-    goals: ["Develop Kai as a recognizable creative character", "Practice cinematic storytelling workflows", "Build a repeatable AI-assisted production process"],
-    features: ["Character development", "Episode planning", "Visual experimentation", "Opening and closing motion direction"],
-    approach: "The project is treated as an in-production creative lab, not a finished flagship. It supports the Kaidevlab creative pillar while product work remains central.",
-    challenges: ["Maintaining visual consistency across AI-generated shots", "Balancing speed with story clarity", "Avoiding overclaiming before trailer and episodes are complete"],
-    limitations: ["Series is still in production", "Not a flagship case study yet", "Trailer and complete episode structure are pending"],
-    next: ["Complete planned episodes", "Finish official trailer", "Prepare final creative case study"]
+    kind: "creative", title: "Kai Revengers", category: "Video Content Project", status: "Series in Production", role: "Creator, story direction, visual concept, editing direction", logo: "/logos/kai-revengers-64.svg", poster: "/kai-revengers-poster.jpg", year: "2026", stack: ["Video content", "Story planning", "Anime-inspired visuals", "Editing", "Character direction"],
+    summary: "An anime-inspired video content project built around Kai, Haruma, rivalry arcs, and cinematic short-form storytelling.",
+    problem: "Short-form video content needs a clear hook, recognizable characters, strong visual identity, and enough story momentum to make viewers follow the next episode.",
+    goals: ["Build Kai Revengers as a recognizable video content series", "Develop Kai and Haruma through rivalry-driven arcs", "Create poster, trailer, episode, and edit assets with consistent visual direction"],
+    features: ["Rivalry Arc poster direction", "Character-led story setup", "Urban anime-inspired mood", "Short-form video and trailer planning"],
+    approach: "Kai Revengers is treated as an original content project: story, poster, visual tone, edit pacing, and character branding work together before full episode release.",
+    challenges: ["Keeping character identity consistent across assets", "Balancing visual impact with clear story beats", "Turning poster energy into trailer and episode pacing"],
+    limitations: ["Series is still in production", "Trailer and complete episode structure are pending", "Distribution and release cadence are still being shaped"],
+    next: ["Finish official trailer", "Plan first episode structure", "Prepare release assets for the Rivalry Arc"]
+  },
+  "dragon-kings-last-contract": {
+    kind: "creative", title: "The Dragon King’s Last Contract", category: "AI Film Series", status: "Series in Production", role: "Creator, story direction, poster concept, AI film workflow", logo: "/logos/kai-revengers-64.svg", poster: "/dragon-kings-last-contract-poster.jpg", year: "2026", stack: ["Seedance 2.0", "AI filmmaking", "Dark fantasy", "Trailer planning", "Poster direction"],
+    summary: "A dark fantasy film series about a monster, a contract, and the girl sent to kill him, built with Seedance 2.0 workflows.",
+    problem: "AI film series need more than striking visuals: they need coherent character motivation, repeatable style, strong scene continuity, and trailer pacing that sells the story.",
+    goals: ["Build a cinematic dark fantasy series", "Use Seedance 2.0 for repeatable film-style shots", "Develop the Dragon King story through poster, trailer, and episode assets"],
+    features: ["Gothic romance premise", "Dragon King visual identity", "Moonlit cathedral mood", "Contract and betrayal story hook"],
+    approach: "The series starts from a strong key visual and story hook, then expands into shot planning, character consistency, trailer structure, and release-ready short film assets.",
+    challenges: ["Maintaining character consistency across AI-generated scenes", "Preserving gothic tone without losing story clarity", "Turning poster premise into cinematic sequence flow"],
+    limitations: ["Series is still in production", "Trailer and episode structure are still being shaped", "Final release format and cadence are not locked yet"],
+    next: ["Define core characters and contract rules", "Create trailer shot list", "Generate first Seedance 2.0 scene tests"]
   }
 } as const;
-export async function generateStaticParams(){return Object.keys(projects).map(slug=>({slug}))}
-export default async function Project({params}:{params:Promise<{slug:string}>}){
-  const {slug}=await params; const p = projects[slug as keyof typeof projects] ?? projects["8agents"];
+
+type ProjectSlug = keyof typeof projects;
+type ProjectPageProps = { params: Promise<{ slug: string }> };
+
+function getProject(slug: string) {
+  return projects[slug as ProjectSlug];
+}
+
+export async function generateStaticParams() {
+  return Object.keys(projects).map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const p = getProject(slug);
+
+  if (!p) {
+    return { title: "Project not found — Kaidevlab" };
+  }
+
+  const title = `${p.title} — Kaidevlab Project`;
+  const description = p.summary;
+  const url = `/work/${slug}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "Kaidevlab",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}
+
+export default async function Project({ params }: ProjectPageProps) {
+  const { slug } = await params;
+  const p = getProject(slug);
+
+  if (!p) notFound();
+
+  const creative = "kind" in p && p.kind === "creative";
+  const labels = creative
+    ? {
+      problem: "Premise / story hook",
+      goals: "Creative goals",
+      features: "Visual direction",
+      approach: "Production workflow",
+      challenges: "Creative challenges",
+      limitations: "Current progress",
+      next: "Release plan",
+    }
+    : {
+      problem: "Problem / opportunity",
+      goals: "Product goals",
+      features: "Key features",
+      approach: "Technical / creative approach",
+      challenges: "Challenges",
+      limitations: "Current limitations",
+      next: "Next steps",
+    };
+
   return <main className="section detail-page">
     <a className="secondary" href="/work/">← Back to Work</a>
     <section className="detail-hero">
       <div><p className="eyebrow">{p.category}</p><h1>{p.title}</h1><p className="lead">{p.summary}</p><div className="detail-actions"><span className="status">{p.status}</span>{"liveUrl" in p && p.liveUrl && <a className="primary" href={p.liveUrl} target="_blank" rel="noreferrer">Visit Live Site</a>}</div></div>
-      <div className="detail-card"><img src={p.logo} alt="" aria-hidden="true"/><p><b>Role</b><br/>{p.role}</p><p><b>Year</b><br/>{p.year}</p><div className="stack">{p.stack.map(x=><span key={x}>{x}</span>)}</div></div>
+      <div className="detail-card">{!creative && <img src={p.logo} alt="" aria-hidden="true"/>}<p><b>Role</b><br/>{p.role}</p><p><b>Year</b><br/>{p.year}</p><div className="stack">{p.stack.map(x=><span key={x}>{x}</span>)}</div></div>
     </section>
+    {"poster" in p && p.poster && <figure className="detail-poster"><img src={p.poster} alt={`${p.title} poster`} /><figcaption>{p.title} key visual / poster.</figcaption></figure>}
     <section className="detail-grid">
-      <article><h2>Problem / opportunity</h2><p>{p.problem}</p></article>
-      <article><h2>Product goals</h2><ul>{p.goals.map(x=><li key={x}>{x}</li>)}</ul></article>
-      <article><h2>Key features</h2><ul>{p.features.map(x=><li key={x}>{x}</li>)}</ul></article>
-      <article><h2>Technical / creative approach</h2><p>{p.approach}</p></article>
-      <article><h2>Challenges</h2><ul>{p.challenges.map(x=><li key={x}>{x}</li>)}</ul></article>
-      <article><h2>Current limitations</h2><ul>{p.limitations.map(x=><li key={x}>{x}</li>)}</ul></article>
-      <article><h2>Next steps</h2><ul>{p.next.map(x=><li key={x}>{x}</li>)}</ul></article>
+      <article><h2>{labels.problem}</h2><p>{p.problem}</p></article>
+      <article><h2>{labels.goals}</h2><ul>{p.goals.map(x=><li key={x}>{x}</li>)}</ul></article>
+      <article><h2>{labels.features}</h2><ul>{p.features.map(x=><li key={x}>{x}</li>)}</ul></article>
+      <article><h2>{labels.approach}</h2><p>{p.approach}</p></article>
+      <article><h2>{labels.challenges}</h2><ul>{p.challenges.map(x=><li key={x}>{x}</li>)}</ul></article>
+      <article><h2>{labels.limitations}</h2><ul>{p.limitations.map(x=><li key={x}>{x}</li>)}</ul></article>
+      <article><h2>{labels.next}</h2><ul>{p.next.map(x=><li key={x}>{x}</li>)}</ul></article>
     </section>
   </main>
 }
