@@ -2,6 +2,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 
 const projects = [
@@ -39,7 +40,7 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand brand-logo" href="#top" aria-label="Kaidevlab home"><img className="logo-light" src="/brand/kaidevlab-logo-light.webp" alt="Kaidevlab" /><img className="logo-dark" src="/brand/kaidevlab-logo-dark.webp" alt="" aria-hidden="true" /></a>
+        <a className="brand brand-logo" href="#top" aria-label="Kaidevlab home"><Image className="logo-light" src="/brand/kaidevlab-logo-light.webp" alt="Kaidevlab" fill sizes="250px" priority /><Image className="logo-dark" src="/brand/kaidevlab-logo-dark.webp" alt="" aria-hidden="true" fill sizes="250px" priority /></a>
         <nav aria-label="Primary navigation">
           <a href="#work">Work</a><a href="#notes">Lab Notes</a><a href="#about">About</a><a href="#contact">Contact</a>
         </nav>
@@ -91,7 +92,7 @@ export default function Home() {
           {projects.slice(0, 4).map((p, i) => <motion.article className={`project ${i === 0 ? "featured" : ""} tone-${p.tone}`} key={p.name} variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} whileHover={{ y: -5 }}>
             <div className="thumb project-visual">
               <div className="visual-grid" aria-hidden="true" />
-              <img src={p.logo} alt="" aria-hidden="true" />
+              <Image src={p.logo} alt="" aria-hidden="true" width={88} height={88} />
               <div className="visual-lines" aria-hidden="true"><span /><span /><span /></div>
               <strong>{p.name}</strong>
             </div>
@@ -102,7 +103,7 @@ export default function Home() {
 
       <section className="section split"><div><p className="eyebrow">WHAT I DO</p><h2>Build · Code · Create</h2></div><div className="capabilities">{["Product Engineering — From concept and architecture to interface, backend, deployment, and iteration.","AI Systems — AI agents, model routing, automation, prompt systems, and generative workflows.","Creative Direction — Brand identities, interface direction, digital characters, and content concepts.","Visual Storytelling — Video editing, cinematic pacing, subtitles, sound direction, and AI-assisted production."].map(x => <p key={x}>{x}</p>)}</div></section>
 
-      <section className="section lab"><p className="eyebrow">CREATIVE WORLDS</p><h2>Original video series, AI film experiments, posters, trailers, and story worlds in production.</h2><div className="creative-worlds">{creativeProjects.map(p => <motion.article className="creative-world" key={p.slug} variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} whileHover={{ y: -6 }}><a href={`/work/${p.slug}`}><img src={p.poster} alt="" aria-hidden="true" /><span>{p.category}</span><strong>{p.name}</strong><p>{p.summary}</p></a></motion.article>)}</div><a className="secondary" href="/work/">Explore Creative Work</a></section>
+      <section className="section lab"><p className="eyebrow">CREATIVE WORLDS</p><h2>Original video series, AI film experiments, posters, trailers, and story worlds in production.</h2><div className="creative-worlds">{creativeProjects.map(p => <motion.article className="creative-world" key={p.slug} variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} whileHover={{ y: -6 }}><a href={`/work/${p.slug}`}><Image src={p.poster} alt="" aria-hidden="true" width={720} height={1080} sizes="(max-width: 760px) 100vw, 50vw" /><span>{p.category}</span><strong>{p.name}</strong><p>{p.summary}</p></a></motion.article>)}</div><a className="secondary" href="/work/">Explore Creative Work</a></section>
 
       <section className="section split"><div><p className="eyebrow">NOW BUILDING & LEARNING</p><h2>Kaidevlab is not a museum of finished work.</h2><p>It is a living record of what I’m building, learning, and improving.</p></div><ul><li>Building: 8Agents, 8Router, NihongoGate, Kaidevlab redesign</li><li>Learning: video editing, cinematic storytelling, AI-assisted filmmaking, product storytelling, creative direction</li></ul></section>
 
@@ -112,7 +113,7 @@ export default function Home() {
 
       <section id="contact" className="section cta"><h2>Have an idea, collaboration, or interesting problem?</h2><p>Let’s explore what we can build together.</p><a className="primary" href="mailto:kai@kaidevlab.com">Start a Conversation</a></section>
 
-      <footer><a className="brand brand-logo" href="#top" aria-label="Kaidevlab home"><img className="logo-light" src="/brand/kaidevlab-logo-light.webp" alt="Kaidevlab" /><img className="logo-dark" src="/brand/kaidevlab-logo-dark.webp" alt="" aria-hidden="true" /></a><p>Build · Code · Create</p><div><a href="https://x.com/Kiminoheroo">X</a><a href="https://github.com/">GitHub</a><a href="https://www.linkedin.com/">LinkedIn</a><a href="mailto:kai@kaidevlab.com">Email</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div><small>© 2026 Kaidevlab. The personal creative technology lab of Kai.</small></footer>
+      <footer><a className="brand brand-logo" href="#top" aria-label="Kaidevlab home"><Image className="logo-light" src="/brand/kaidevlab-logo-light.webp" alt="Kaidevlab" fill sizes="250px" /><Image className="logo-dark" src="/brand/kaidevlab-logo-dark.webp" alt="" aria-hidden="true" fill sizes="250px" /></a><p>Build · Code · Create</p><div><a href="https://x.com/Kiminoheroo">X</a><a href="https://github.com/">GitHub</a><a href="https://www.linkedin.com/">LinkedIn</a><a href="mailto:kai@kaidevlab.com">Email</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div><small>© 2026 Kaidevlab. The personal creative technology lab of Kai.</small></footer>
     </main>
   );
 }
