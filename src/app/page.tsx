@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import { useState } from "react";
 
 const projects = [
@@ -21,6 +22,11 @@ const notes = [
   ["Designing AI agent learning paths", "AI & Agents", "Notes from shaping structured workflows for agent builders."],
   ["Creative AI as production lab", "Creative AI", "Experiments across characters, motion, editing, and storytelling."],
 ];
+
+const reveal: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+};
 
 export default function Home() {
   const [theme, setTheme] = useState(() => (typeof document === "undefined" ? "light" : document.documentElement.dataset.theme || "light"));
@@ -53,14 +59,14 @@ export default function Home() {
           <circle cx="1120" cy="210" r="5" />
           <circle cx="1040" cy="535" r="4" />
         </svg>
-        <div className="hero-copy">
+        <motion.div className="hero-copy" initial="hidden" animate="show" variants={reveal}>
           <p className="eyebrow">CREATIVE TECHNOLOGIST & INDEPENDENT BUILDER</p>
           <h1>Building products, systems, and stories at the intersection of AI, code, and creativity.</h1>
           <p className="lead">I turn ideas into digital products, developer tools, learning platforms, and creative experiences.</p>
           <div className="actions"><a className="primary" href="#work">Explore My Work</a><a className="secondary" href="#about">Meet Kai</a></div>
           <p className="meta">Based in Japan · Building independently</p>
-        </div>
-        <div className="hero-visual">
+        </motion.div>
+        <motion.div className="hero-visual" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, ease: "easeOut", delay: 0.08 }}>
           <div className="lab-orbit orbit-one" aria-hidden="true" />
           <div className="lab-orbit orbit-two" aria-hidden="true" />
           <div className="media-panel" aria-label="Kai holographic coding hero video">
@@ -69,7 +75,7 @@ export default function Home() {
               <source src="/media/kai-hero/kai-hero.mp4" type="video/mp4" />
             </video>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="signal" aria-label="Current signal">
@@ -82,7 +88,7 @@ export default function Home() {
         <div className="module-label" aria-hidden="true"><span>MODULE 01</span><span>SELECTED WORK</span></div>
         <div className="section-head"><p className="eyebrow">SELECTED WORK</p><h2>Real products, honest status, clear proof.</h2></div>
         <div className="project-grid">
-          {projects.slice(0, 4).map((p, i) => <article className={`project ${i === 0 ? "featured" : ""} tone-${p.tone}`} key={p.name}>
+          {projects.slice(0, 4).map((p, i) => <motion.article className={`project ${i === 0 ? "featured" : ""} tone-${p.tone}`} key={p.name} variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} whileHover={{ y: -5 }}>
             <div className="thumb project-visual">
               <div className="visual-grid" aria-hidden="true" />
               <img src={p.logo} alt="" aria-hidden="true" />
@@ -90,13 +96,13 @@ export default function Home() {
               <strong>{p.name}</strong>
             </div>
             <p className="chip">{p.category}</p><h3>{p.name}</h3><p>{p.summary}</p><p className="status">{p.status}</p><p className="role">Kai’s role: {p.role}</p><div className="stack">{p.stack.map(s => <span key={s}>{s}</span>)}</div>{p.disclaimer && <p className="disclaimer">{p.disclaimer}</p>}<div className="project-actions"><a href={`/work/${p.slug}`}>View Project</a>{p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer">Live Site</a>}</div>
-          </article>)}
+          </motion.article>)}
         </div>
       </section>
 
       <section className="section split"><div><p className="eyebrow">WHAT I DO</p><h2>Build · Code · Create</h2></div><div className="capabilities">{["Product Engineering — From concept and architecture to interface, backend, deployment, and iteration.","AI Systems — AI agents, model routing, automation, prompt systems, and generative workflows.","Creative Direction — Brand identities, interface direction, digital characters, and content concepts.","Visual Storytelling — Video editing, cinematic pacing, subtitles, sound direction, and AI-assisted production."].map(x => <p key={x}>{x}</p>)}</div></section>
 
-      <section className="section lab"><p className="eyebrow">CREATIVE WORLDS</p><h2>Original video series, AI film experiments, posters, trailers, and story worlds in production.</h2><div className="creative-worlds">{creativeProjects.map(p => <article className="creative-world" key={p.slug}><a href={`/work/${p.slug}`}><img src={p.poster} alt="" aria-hidden="true" /><span>{p.category}</span><strong>{p.name}</strong><p>{p.summary}</p></a></article>)}</div><a className="secondary" href="/work/">Explore Creative Work</a></section>
+      <section className="section lab"><p className="eyebrow">CREATIVE WORLDS</p><h2>Original video series, AI film experiments, posters, trailers, and story worlds in production.</h2><div className="creative-worlds">{creativeProjects.map(p => <motion.article className="creative-world" key={p.slug} variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} whileHover={{ y: -6 }}><a href={`/work/${p.slug}`}><img src={p.poster} alt="" aria-hidden="true" /><span>{p.category}</span><strong>{p.name}</strong><p>{p.summary}</p></a></motion.article>)}</div><a className="secondary" href="/work/">Explore Creative Work</a></section>
 
       <section className="section split"><div><p className="eyebrow">NOW BUILDING & LEARNING</p><h2>Kaidevlab is not a museum of finished work.</h2><p>It is a living record of what I’m building, learning, and improving.</p></div><ul><li>Building: 8Agents, 8Router, NihongoGate, Kaidevlab redesign</li><li>Learning: video editing, cinematic storytelling, AI-assisted filmmaking, product storytelling, creative direction</li></ul></section>
 
