@@ -124,6 +124,12 @@ export default async function Project({ params }: ProjectPageProps) {
   if (!p) notFound();
 
   const creative = "kind" in p && p.kind === "creative";
+  const projectSlugs = Object.keys(projects) as ProjectSlug[];
+  const currentIndex = projectSlugs.indexOf(slug as ProjectSlug);
+  const previousSlug = projectSlugs[(currentIndex - 1 + projectSlugs.length) % projectSlugs.length];
+  const nextSlug = projectSlugs[(currentIndex + 1) % projectSlugs.length];
+  const previousProject = projects[previousSlug];
+  const nextProject = projects[nextSlug];
   const labels = creative
     ? {
       problem: "Premise / story hook",
@@ -160,6 +166,28 @@ export default async function Project({ params }: ProjectPageProps) {
       <article><h2>{labels.challenges}</h2><ul>{p.challenges.map(x=><li key={x}>{x}</li>)}</ul></article>
       <article><h2>{labels.limitations}</h2><ul>{p.limitations.map(x=><li key={x}>{x}</li>)}</ul></article>
       <article><h2>{labels.next}</h2><ul>{p.next.map(x=><li key={x}>{x}</li>)}</ul></article>
+    </section>
+    <section className="detail-next" aria-label="More projects">
+      <div>
+        <p className="eyebrow">MORE WORK</p>
+        <h2>{creative ? "Explore another story world or build." : "Keep exploring what Kai is building."}</h2>
+      </div>
+      <div className="detail-next-grid">
+        <a href={`/work/${previousSlug}`}>
+          <span>Previous</span>
+          <strong>{previousProject.title}</strong>
+          <small>{previousProject.category}</small>
+        </a>
+        <a href={`/work/${nextSlug}`}>
+          <span>Next</span>
+          <strong>{nextProject.title}</strong>
+          <small>{nextProject.category}</small>
+        </a>
+      </div>
+      <div className="detail-bottom-actions">
+        <a className="secondary" href="/work/">Back to all work</a>
+        {creative ? <a className="primary" href="/work/">Explore creative projects</a> : "liveUrl" in p && p.liveUrl && <a className="primary" href={p.liveUrl} target="_blank" rel="noreferrer">Visit live project</a>}
+      </div>
     </section>
   </main>
 }
