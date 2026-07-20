@@ -22,3 +22,13 @@
 .poster-visual>img:not(.poster-bg){z-index:3;background:rgba(255,255,255,.82);backdrop-filter:blur(10px)}
 .poster-visual .visual-lines,.poster-visual strong{z-index:3}
 .poster-visual strong{color:white;text-shadow:0 2px 18px rgba(0,0,0,.8)}
+.creative-worlds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:2rem 0 1.25rem}
+.creative-world{position:relative;overflow:hidden;border:1px solid var(--glass-border);border-radius:26px;background:#050814;min-height:420px;box-shadow:0 24px 90px rgba(37,99,235,.16)}
+.creative-world a{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.35rem;color:white}
+.creative-world img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:saturate(1.12) contrast(1.04)}
+.creative-world a:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.22) 42%,rgba(0,0,0,.86));pointer-events:none}
+.creative-world span,.creative-world strong,.creative-world p{position:relative;z-index:2}
+.creative-world span{width:max-content;margin-bottom:.7rem;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:.38rem .62rem;background:rgba(0,0,0,.34);font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.creative-world strong{font-size:clamp(1.65rem,3vw,3rem);line-height:.96;letter-spacing:-.055em;text-shadow:0 2px 18px rgba(0,0,0,.72)}
+.creative-world p{max-width:560px;margin:.75rem 0 0;color:rgba(255,255,255,.82)}
+@media(max-width:760px){.creative-worlds{grid-template-columns:1fr}.creative-world{min-height:360px}}
