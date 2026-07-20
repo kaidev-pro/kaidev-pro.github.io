@@ -58,12 +58,10 @@ export default function Home() {
           <div className="lab-orbit orbit-one" aria-hidden="true" />
           <div className="lab-orbit orbit-two" aria-hidden="true" />
           <div className="media-panel" aria-label="Kai holographic coding hero video">
-            <div className="panel-topline" aria-hidden="true"><span>KAIDEVLAB / LIVE LOOP</span><span>16:9 · NO CROP</span></div>
             <video width="1280" height="720" autoPlay muted loop playsInline preload="metadata" poster="/media/kai-hero/kai-hero-poster.webp" aria-hidden="true">
               <source src="/media/kai-hero/kai-hero.webm" type="video/webm" />
               <source src="/media/kai-hero/kai-hero.mp4" type="video/mp4" />
             </video>
-            <div className="panel-readout" aria-hidden="true"><span><span className="dot" />DAYLIGHT LAB ACTIVE</span><span className="file-tag">KAI_WEB.MP4</span></div>
           </div>
         </div>
       </section>
