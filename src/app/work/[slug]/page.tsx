@@ -93,6 +93,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const title = `${p.title} — Kaidevlab Project`;
   const description = p.summary;
   const url = `/work/${slug}`;
+  const images = "poster" in p && p.poster ? [p.poster] : undefined;
 
   return {
     title,
@@ -104,11 +105,13 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       url,
       siteName: "Kaidevlab",
       type: "article",
+      images,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images,
     },
   };
 }
@@ -147,6 +150,7 @@ export default async function Project({ params }: ProjectPageProps) {
       <div className="detail-card">{!creative && <img src={p.logo} alt="" aria-hidden="true"/>}<p><b>Role</b><br/>{p.role}</p><p><b>Year</b><br/>{p.year}</p><div className="stack">{p.stack.map(x=><span key={x}>{x}</span>)}</div></div>
     </section>
     {"poster" in p && p.poster && <figure className="detail-poster"><img src={p.poster} alt={`${p.title} poster`} /><figcaption>{p.title} key visual / poster.</figcaption></figure>}
+    {creative && <section className="creative-facts" aria-label="Production facts"><span>Trailer: In production</span><span>Format: Short film / episodic series</span><span>Release: In planning</span></section>}
     <section className="detail-grid">
       <article><h2>{labels.problem}</h2><p>{p.problem}</p></article>
       <article><h2>{labels.goals}</h2><ul>{p.goals.map(x=><li key={x}>{x}</li>)}</ul></article>
