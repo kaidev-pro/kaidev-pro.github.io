@@ -146,7 +146,7 @@ export default async function Project({ params }: ProjectPageProps) {
       <div><p className="eyebrow">{p.category}</p><h1>{p.title}</h1><p className="lead">{p.summary}</p><div className="detail-actions"><span className="status">{p.status}</span>{"liveUrl" in p && p.liveUrl && <a className="primary" href={p.liveUrl} target="_blank" rel="noreferrer">Visit Live Site</a>}</div></div>
       <div className="detail-card">{!creative && <img src={p.logo} alt="" aria-hidden="true"/>}<p><b>Role</b><br/>{p.role}</p><p><b>Year</b><br/>{p.year}</p><div className="stack">{p.stack.map(x=><span key={x}>{x}</span>)}</div></div>
     </section>
-    {"poster" in p && p.poster && <figure className="detail-poster"><img src={p.poster} alt={`${p.title} poster`} /><figcaption>{p.title} key visual / poster.</figcaption></figure>}
+    {"poster" in p && p.poster && <figure className="detail-poster"><img src={p.poster} alt={`${p.title} poster`} /></figure>}
     <section className="detail-grid">
       <article><h2>{labels.problem}</h2><p>{p.problem}</p></article>
       <article><h2>{labels.goals}</h2><ul>{p.goals.map(x=><li key={x}>{x}</li>)}</ul></article>
