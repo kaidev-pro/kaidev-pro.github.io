@@ -10,12 +10,6 @@ const projects = [
   { slug: "8router", name: "8Router", category: "Developer Tool", status: "Beta / Active Development", role: "Architecture, routing, product", summary: "An OpenAI-compatible gateway for routing, fallback, credentials, and multi-provider AI access.", liveUrl: "https://8router.8agents.xyz", logo: "/logos/8router-mark.svg", stack: ["Model routing", "Fallback", "Credentials"], tone: "router" },
   { slug: "nihongogate", name: "NihongoGate", category: "Education Product", status: "Active Development", role: "Product engineering, learning design", summary: "A Japanese and SSW learning platform built around structured, practical learning workflows.", liveUrl: "https://nihongogate.kaidevlab.com", logo: "/logos/nihongogate-64.svg", stack: ["Japanese", "SSW", "Learning paths"], tone: "education" },
   { slug: "rakusaku", name: "Rakusaku", category: "Digital Commerce Prototype", status: "Prototype — Payment Integration Pending", role: "Commerce architecture, brand, UX", summary: "A game top-up platform exploring commerce architecture, product experience, and playful branding.", liveUrl: "https://rakusaku.com", logo: "/logos/rakusaku-128.webp", stack: ["Commerce UX", "Catalog", "Prototype"], tone: "commerce", disclaimer: "The core platform and brand experience are in development. Payment gateway integration and live commerce operations are not yet active." },
-  { slug: "kai-revengers", name: "Kai Revengers", category: "Creative AI", status: "Series in Production", role: "Creative direction, story, AI-assisted production", summary: "A character-led visual storytelling experiment exploring cinematic pacing, edits, and AI-assisted production.", logo: "/logos/kai-revengers-64.svg", stack: ["Story", "Motion", "AI video"], tone: "creative" },
-];
-
-const creativeProjects = [
-  { slug: "kai-revengers", name: "Kai Revengers", category: "Video Content Project", poster: "/kai-revengers-poster.jpg", summary: "Anime-inspired rivalry arcs, characters, posters, trailer planning, and short-form storytelling." },
-  { slug: "dragon-kings-last-contract", name: "The Dragon King’s Last Contract", category: "AI Film Series", poster: "/dragon-kings-last-contract-poster.jpg", summary: "A dark fantasy film series built with Seedance 2.0, gothic romance, and cinematic contract drama." },
 ];
 
 const notes = [
@@ -102,8 +96,6 @@ export default function Home() {
       </section>
 
       <section className="section split"><div><p className="eyebrow">WHAT I DO</p><h2>Build · Code · Create</h2></div><div className="capabilities">{["Product Engineering — From concept and architecture to interface, backend, deployment, and iteration.","AI Systems — AI agents, model routing, automation, prompt systems, and generative workflows.","Creative Direction — Brand identities, interface direction, digital characters, and content concepts.","Visual Storytelling — Video editing, cinematic pacing, subtitles, sound direction, and AI-assisted production."].map(x => <p key={x}>{x}</p>)}</div></section>
-
-      <section className="section lab"><p className="eyebrow">CREATIVE WORLDS</p><h2>Original video series, AI film experiments, posters, trailers, and story worlds in production.</h2><div className="creative-worlds">{creativeProjects.map(p => <motion.article className="creative-world" key={p.slug} variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} whileHover={{ y: -6 }}><a href={`/work/${p.slug}`}><Image src={p.poster} alt="" aria-hidden="true" width={720} height={1080} sizes="(max-width: 760px) 100vw, 50vw" /><span>{p.category}</span><strong>{p.name}</strong><p>{p.summary}</p></a></motion.article>)}</div><a className="secondary" href="/work/">Explore Creative Work</a></section>
 
       <section className="section split"><div><p className="eyebrow">NOW BUILDING & LEARNING</p><h2>Kaidevlab is not a museum of finished work.</h2><p>It is a living record of what I’m building, learning, and improving.</p></div><ul><li>Building: 8Agents, 8Router, NihongoGate, Kaidevlab redesign</li><li>Learning: video editing, cinematic storytelling, AI-assisted filmmaking, product storytelling, creative direction</li></ul></section>
 

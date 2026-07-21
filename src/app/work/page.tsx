@@ -10,11 +10,9 @@ const work = [
   { slug: "8router", name: "8Router", category: "Developer Tool", group: "Developer Tools", status: "Beta / Active Development", logo: "/logos/8router-mark.svg", summary: "An OpenAI-compatible gateway for routing, fallback, credentials, and multi-provider AI access.", liveUrl: "https://8router.8agents.xyz" },
   { slug: "nihongogate", name: "NihongoGate", category: "Education Product", group: "Education", status: "Active Development", logo: "/logos/nihongogate-64.svg", summary: "A Japanese and SSW learning platform built around practical learning workflows.", liveUrl: "https://nihongogate.kaidevlab.com" },
   { slug: "rakusaku", name: "Rakusaku", category: "Digital Commerce Prototype", group: "Products", status: "Prototype — Payment Integration Pending", logo: "/logos/rakusaku-128.webp", summary: "A game top-up prototype exploring commerce architecture and playful branding.", liveUrl: "https://rakusaku.com" },
-  { slug: "kai-revengers", name: "Kai Revengers", category: "Video Content Project", group: "Creative", status: "Series in Production", logo: "/logos/kai-revengers-64.svg", poster: "/kai-revengers-poster.jpg", summary: "An anime-inspired video content project built around rivalry arcs and cinematic short-form storytelling." },
-  { slug: "dragon-kings-last-contract", name: "The Dragon King’s Last Contract", category: "AI Film Series", group: "Creative", status: "Series in Production", logo: "/logos/kai-revengers-64.svg", poster: "/dragon-kings-last-contract-poster.jpg", summary: "A dark fantasy film series built with Seedance 2.0 workflows." },
 ];
 
-const filters = ["All", "Products", "AI", "Developer Tools", "Education", "Creative"] as const;
+const filters = ["All", "Products", "AI", "Developer Tools", "Education"] as const;
 type Filter = (typeof filters)[number];
 
 const cardVariants: Variants = {
@@ -49,9 +47,9 @@ export default function Work() {
       <p className="filter-count">Showing {filteredWork.length} of {work.length} projects.</p>
       <motion.div className="project-grid" layout>
         <AnimatePresence mode="popLayout">
-          {filteredWork.map(({ slug, name, category, status, logo, poster, summary, liveUrl }) => (
+          {filteredWork.map(({ slug, name, category, status, logo, summary, liveUrl }) => (
             <motion.article
-              className={`project ${poster ? "creative-card" : ""}`}
+              className="project"
               key={name}
               layout
               variants={cardVariants}
@@ -60,10 +58,9 @@ export default function Work() {
               exit="exit"
               whileHover={{ y: -5 }}
             >
-              <div className={`thumb project-visual ${poster ? "poster-visual" : ""}`}>
-                {poster && <Image className="poster-bg" src={poster} alt="" aria-hidden="true" fill sizes="(max-width: 760px) 100vw, 33vw" />}
+              <div className="thumb project-visual">
                 <div className="visual-grid" aria-hidden="true" />
-                {!poster && <Image src={logo} alt="" aria-hidden="true" width={88} height={88} />}
+                <Image src={logo} alt="" aria-hidden="true" width={88} height={88} />
                 <div className="visual-lines" aria-hidden="true"><span /><span /><span /></div>
                 <strong>{name}</strong>
               </div>
