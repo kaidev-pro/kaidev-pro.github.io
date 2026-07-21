@@ -56,7 +56,7 @@ export default function Home() {
           <circle cx="1040" cy="535" r="4" />
         </svg>
         <motion.div className="hero-copy" initial="hidden" animate="show" variants={reveal}>
-          <p className="eyebrow"><span className="term-prefix">~ $</span> CREATIVE TECHNOLOGIST & INDEPENDENT BUILDER<span className="blinking-cursor">_</span></p>
+          <p className="eyebrow">CREATIVE TECHNOLOGIST & INDEPENDENT BUILDER</p>
           <h1>Building products, systems, and stories at the intersection of AI, code, and creativity.</h1>
           <p className="lead">I turn ideas into digital products, developer tools, learning platforms, and creative experiences.</p>
           <div className="actions"><a className="primary" href="#work">Explore My Work</a><a className="secondary" href="#about">Meet Kai</a></div>
@@ -92,15 +92,12 @@ export default function Home() {
         <div className="section-head"><p className="eyebrow">SELECTED WORK</p><h2>Real products, honest status, clear proof.</h2></div>
         <div className="project-grid">
           {projects.slice(0, 4).map((p, i) => <motion.article className={`project ${i === 0 ? "featured" : ""} tone-${p.tone}`} key={p.name} variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }} whileHover={{ y: -5 }}>
-              <div className="thumb project-visual">
-                <div className="visual-grid" aria-hidden="true" />
-                <div className="hover-stack-reveal">
-                  {p.stack.map(s => <span key={s}>{s}</span>)}
-                </div>
-                <Image src={p.logo} alt="" aria-hidden="true" width={88} height={88} />
-                <div className="visual-lines" aria-hidden="true"><span /><span /><span /></div>
-                <strong><span className="term-prefix">~ </span>{p.name}</strong>
-              </div>
+            <div className="thumb project-visual">
+              <div className="visual-grid" aria-hidden="true" />
+              <Image src={p.logo} alt="" aria-hidden="true" width={88} height={88} />
+              <div className="visual-lines" aria-hidden="true"><span /><span /><span /></div>
+              <strong>{p.name}</strong>
+            </div>
             <p className="chip">{p.category}</p><h3>{p.name}</h3><p>{p.summary}</p><p className="status">{p.status}</p><p className="role">Kai’s role: {p.role}</p><div className="stack">{p.stack.map(s => <span key={s}>{s}</span>)}</div>{p.disclaimer && <p className="disclaimer">{p.disclaimer}</p>}<div className="project-actions"><a href={`/work/${p.slug}`}>View Project</a>{p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer">Live Site</a>}</div>
           </motion.article>)}
         </div>

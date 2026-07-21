@@ -138,16 +138,3 @@
 .bottom-right{bottom:0;right:0;border-left:none;border-top:none;border-bottom-right-radius:8px}
 @keyframes pulse-dots{0%,100%{opacity:.3}50%{opacity:.5}}
 .blueprint-dots{animation:pulse-dots 6s ease-in-out infinite}
-
-.term-prefix{color:var(--brand-primary);opacity:.7;font-family:var(--font-display);font-weight:900}
-.blinking-cursor{display:inline-block;width:10px;height:1.2em;background:var(--brand-glow);margin-left:4px;vertical-align:middle;animation:blink 1s step-end infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-.hover-stack-reveal{position:absolute;inset:0;z-index:4;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:.4rem;padding:1.5rem;background:color-mix(in srgb,var(--deep-contrast) 92%,transparent);opacity:0;transition:opacity .3s ease;pointer-events:none;backdrop-filter:blur(8px)}
-.project:hover .hover-stack-reveal{opacity:1}
-.hover-stack-reveal span{font-size:.7rem;font-weight:900;letter-spacing:.05em;color:var(--hologram-highlight);border:1px solid rgba(110,174,232,.3);padding:.25rem .5rem;border-radius:4px;background:rgba(110,174,232,.05)}
-/* work page specific reveal fix */
-.work-page .hover-stack-reveal{font-size:.85rem;color:var(--text-primary);text-align:center;color:white;font-weight:600;line-height:1.4}
-
-.project-visual img{transition:filter .3s ease}
-.project:hover .project-visual img{filter:blur(4px) grayscale(0.5) opacity(0.3)}

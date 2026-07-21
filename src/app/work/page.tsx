@@ -60,12 +60,9 @@ export default function Work() {
             >
               <div className="thumb project-visual">
                 <div className="visual-grid" aria-hidden="true" />
-                <div className="hover-stack-reveal">
-                  {summary}
-                </div>
                 <Image src={logo} alt="" aria-hidden="true" width={88} height={88} />
                 <div className="visual-lines" aria-hidden="true"><span /><span /><span /></div>
-                <strong><span className="term-prefix">~ </span>{name}</strong>
+                <strong>{name}</strong>
               </div>
               <p className="chip">{category}</p>
               <h3>{name}</h3>
