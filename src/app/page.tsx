@@ -2,6 +2,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import { Code, Cpu, Palette, Video } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -95,7 +96,41 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section split"><div><p className="eyebrow">WHAT I DO</p><h2>Build · Code · Create</h2></div><div className="capabilities">{["Product Engineering — From concept and architecture to interface, backend, deployment, and iteration.","AI Systems — AI agents, model routing, automation, prompt systems, and generative workflows.","Creative Direction — Brand identities, interface direction, digital characters, and content concepts.","Visual Storytelling — Video editing, cinematic pacing, subtitles, sound direction, and AI-assisted production."].map(x => <p key={x}>{x}</p>)}</div></section>
+      <section className="section split"><div><p className="eyebrow">WHAT I DO</p><h2>Build · Code · Create</h2></div><div className="capabilities-grid">{[{
+            icon: <Code size={24} />,
+            title: "Product Engineering",
+            desc: "From concept and architecture to interface, backend, deployment, and iteration.",
+          },
+          {
+            icon: <Cpu size={24} />,
+            title: "AI Systems",
+            desc: "AI agents, model routing, automation, prompt systems, and generative workflows.",
+          },
+          {
+            icon: <Palette size={24} />,
+            title: "Creative Direction",
+            desc: "Brand identities, interface direction, digital characters, and content concepts.",
+          },
+          {
+            icon: <Video size={24} />,
+            title: "Visual Storytelling",
+            desc: "Video editing, cinematic pacing, subtitles, sound direction, and AI-assisted production.",
+          },
+        ].map((cap, i) => (
+          <motion.div
+            className="capability-card"
+            key={i}
+            variants={reveal}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <div className="icon-wrap">{cap.icon}</div>
+            <h3>{cap.title}</h3>
+            <p>{cap.desc}</p>
+          </motion.div>
+        ))}
+      </div></section>
 
       <section className="section split"><div><p className="eyebrow">NOW BUILDING & LEARNING</p><h2>Kaidevlab is not a museum of finished work.</h2><p>It is a living record of what I’m building, learning, and improving.</p></div><ul><li>Building: 8Agents, 8Router, NihongoGate, Kaidevlab redesign</li><li>Learning: video editing, cinematic storytelling, AI-assisted filmmaking, product storytelling, creative direction</li></ul></section>
 
