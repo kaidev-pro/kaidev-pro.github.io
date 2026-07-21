@@ -134,7 +134,31 @@ export default function Home() {
 
       <section className="section split"><div><p className="eyebrow">NOW BUILDING & LEARNING</p><h2>Kaidevlab is not a museum of finished work.</h2><p>It is a living record of what I’m building, learning, and improving.</p></div><ul><li>Building: 8Agents, 8Router, NihongoGate, Kaidevlab redesign</li><li>Learning: video editing, cinematic storytelling, AI-assisted filmmaking, product storytelling, creative direction</li></ul></section>
 
-      <section id="about" className="section about"><p className="eyebrow">ABOUT KAI</p><h2>I’m Kai, an independent builder based in Japan.</h2><p>I create digital products and explore how AI, design, code, and storytelling can work together to turn ideas into useful and memorable experiences.</p><p>I learn by building. Some projects become products, some become experiments, and others become stories—but each one becomes part of Kaidevlab.</p><a className="secondary" href="/about/">More About Me</a></section>
+      <section id="about" className="section about-section">
+        <div className="about-content">
+          <p className="eyebrow">ABOUT KAI</p>
+          <h2>I’m Kai, an independent builder based in Japan.</h2>
+          <p>I create digital products and explore how AI, design, code, and storytelling can work together to turn ideas into useful and memorable experiences.</p>
+          <p>I learn by building. Some projects become products, some become experiments, and others become stories—but each one becomes part of Kaidevlab.</p>
+          <a className="secondary" href="/about/">More About Me</a>
+        </div>
+        <div className="identity-badge">
+          <div className="badge-header">
+            <span className="badge-title">IDENTITY_PRFL</span>
+            <span className="badge-version">v2.0</span>
+          </div>
+          <div className="badge-body">
+            <div className="badge-row"><span>NAME:</span><strong>KAI</strong></div>
+            <div className="badge-row"><span>LOC:</span><strong>JP_LAB_01</strong></div>
+            <div className="badge-row"><span>MODE:</span><strong className="theme-label">{theme === "dark" ? "MIDNIGHT" : "DAYLIGHT"}</strong></div>
+            <div className="badge-row"><span>STATUS:</span><strong>BUILDING</strong></div>
+          </div>
+          <div className="badge-footer">
+            <div className="badge-scanline" />
+            <div className="badge-circles"><span /><span /><span /></div>
+          </div>
+        </div>
+      </section>
 
       <section id="notes" className="section lab-notes-section">
         <div className="section-head">
