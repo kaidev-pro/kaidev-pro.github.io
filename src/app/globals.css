@@ -127,3 +127,14 @@
 .badge-circles span{display:block;width:6px;height:6px;border-radius:999px;background:var(--glass-border)}
 .badge-circles span:last-child{background:var(--brand-glow);box-shadow:0 0 10px var(--brand-glow)}
 @media(max-width:900px){.about-section{grid-template-columns:1fr}}
+
+.blueprint-section{position:relative;z-index:1}
+.blueprint-frame{position:absolute;inset:clamp(1rem,4vw,3rem);z-index:-1;border:1px solid var(--glass-border);border-radius:30px;overflow:hidden;pointer-events:none}
+.blueprint-dots{position:absolute;inset:0;background-image:radial-gradient(var(--glass-border) 1px,transparent 1px);background-size:24px 24px;opacity:.4;mask-image:radial-gradient(circle at 50% 50%,black,transparent 80%)}
+.frame-corner{position:absolute;width:24px;height:24px;border:2px solid var(--brand-primary);z-index:2;opacity:.6}
+.top-left{top:0;left:0;border-right:none;border-bottom:none;border-top-left-radius:8px}
+.top-right{top:0;right:0;border-left:none;border-bottom:none;border-top-right-radius:8px}
+.bottom-left{bottom:0;left:0;border-right:none;border-top:none;border-bottom-left-radius:8px}
+.bottom-right{bottom:0;right:0;border-left:none;border-top:none;border-bottom-right-radius:8px}
+@keyframes pulse-dots{0%,100%{opacity:.3}50%{opacity:.5}}
+.blueprint-dots{animation:pulse-dots 6s ease-in-out infinite}

@@ -81,6 +81,13 @@ export default function Home() {
       </section>
 
       <section id="work" className="section blueprint-section">
+        <div className="blueprint-frame" aria-hidden="true">
+          <div className="frame-corner top-left" />
+          <div className="frame-corner top-right" />
+          <div className="frame-corner bottom-left" />
+          <div className="frame-corner bottom-right" />
+          <div className="blueprint-dots" />
+        </div>
         <div className="module-label" aria-hidden="true"><span>MODULE 01</span><span>SELECTED WORK</span></div>
         <div className="section-head"><p className="eyebrow">SELECTED WORK</p><h2>Real products, honest status, clear proof.</h2></div>
         <div className="project-grid">
