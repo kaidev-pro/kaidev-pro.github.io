@@ -101,7 +101,7 @@ export default function Home() {
                 <div className="visual-lines" aria-hidden="true"><span /><span /><span /></div>
                 <strong><span className="term-prefix">~ </span>{p.name}</strong>
               </div>
-            <p className="chip">{p.category}</p><h3>{p.name}</h3><p>{p.summary}</p><p className="status">{p.status}</p><p className="role">Kai’s role: {p.role}</p><div className="stack">{p.stack.map(s => <span key={s}>{s}</span>)}</div>{p.disclaimer && <p className="disclaimer">{p.disclaimer}</p>}<div className="project-actions"><a href={`/work/${p.slug}`}>View Project</a>{p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer">Live Site</a>}</div>
+            <p className="chip">{p.category}</p><h3>{p.name}</h3><p>{p.summary}</p><p className="status">{p.status}</p><p className="role">Kai’s role: {p.role}</p>{p.disclaimer && <p className="disclaimer">{p.disclaimer}</p>}<div className="project-actions"><a href={`/work/${p.slug}`}>View Project</a>{p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer">Live Site</a>}</div>
           </motion.article>)}
         </div>
       </section>

@@ -154,7 +154,7 @@ export default async function Project({ params }: ProjectPageProps) {
     <a className="secondary" href="/work/">← Back to Work</a>
     <section className="detail-hero">
       <div><p className="eyebrow">{p.category}</p><h1>{p.title}</h1><p className="lead">{p.summary}</p><div className="detail-actions"><span className="status">{p.status}</span>{"liveUrl" in p && p.liveUrl && <a className="primary" href={p.liveUrl} target="_blank" rel="noreferrer">Visit Live Site</a>}</div></div>
-      <div className="detail-card">{!creative && <Image src={p.logo} alt="" aria-hidden="true" width={88} height={88} />}<p><b>Role</b><br/>{p.role}</p><p><b>Year</b><br/>{p.year}</p><div className="stack">{p.stack.map(x=><span key={x}>{x}</span>)}</div></div>
+      <div className="detail-card">{!creative && <Image src={p.logo} alt="" aria-hidden="true" width={88} height={88} />}<p><b>Role</b><br/>{p.role}</p><p><b>Year</b><br/>{p.year}</p></div>
     </section>
     {"poster" in p && p.poster && <figure className="detail-poster"><Image src={p.poster} alt={`${p.title} poster`} width={900} height={1350} sizes="(max-width: 760px) 100vw, 720px" /><figcaption>{p.title} key visual / poster.</figcaption></figure>}
     {creative && <section className="creative-facts" aria-label="Production facts"><span>Trailer: In production</span><span>Format: Short film / episodic series</span><span>Release: In planning</span></section>}
