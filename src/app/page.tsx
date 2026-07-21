@@ -101,7 +101,33 @@ export default function Home() {
 
       <section id="about" className="section about"><p className="eyebrow">ABOUT KAI</p><h2>I’m Kai, an independent builder based in Japan.</h2><p>I create digital products and explore how AI, design, code, and storytelling can work together to turn ideas into useful and memorable experiences.</p><p>I learn by building. Some projects become products, some become experiments, and others become stories—but each one becomes part of Kaidevlab.</p><a className="secondary" href="/about/">More About Me</a></section>
 
-      <section id="notes" className="section"><div className="section-head"><p className="eyebrow">LAB NOTES</p><h2>Build logs, tutorials, project notes, and experiments.</h2></div><div className="notes">{notes.map(n => <article key={n[0]}><p className="chip">{n[1]}</p><h3>{n[0]}</h3><p>{n[2]}</p><small>19 July 2026 · 4 min read</small></article>)}</div></section>
+      <section id="notes" className="section lab-notes-section">
+        <div className="section-head">
+          <p className="eyebrow">LAB NOTES</p>
+          <h2>Build logs, tutorials, and field notes from the lab.</h2>
+        </div>
+        <div className="notes-journal">
+          {notes.map((n, i) => (
+            <article className="journal-entry" key={n[0]}>
+              <div className="entry-meta">
+                <span className="entry-id">ENTRY_00{i + 1}</span>
+                <span className="entry-category">{n[1]}</span>
+              </div>
+              <div className="entry-content">
+                <h3>{n[0]}</h3>
+                <p>{n[2]}</p>
+              </div>
+              <div className="entry-footer">
+                <span className="entry-date">JULY 2026</span>
+                <a className="entry-link" href={`/lab-notes/`}>READ_LOG</a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="section-footer-actions">
+          <a className="secondary" href="/lab-notes/">Access All Logs</a>
+        </div>
+      </section>
 
       <section id="contact" className="section cta"><div className="cta-glow" aria-hidden="true" /><p className="eyebrow">OPEN TO COLLABORATION</p><h2>Have an idea, collaboration, or interesting problem?</h2><p>Let’s explore what we can build together — from useful products and AI systems to creative worlds with a strong point of view.</p><div className="cta-tags" aria-label="Collaboration areas"><span>Product build</span><span>AI systems</span><span>Creative worlds</span></div><a className="primary" href="mailto:kai@kaidevlab.com">Start a Conversation</a></section>
 
