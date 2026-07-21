@@ -33,9 +33,15 @@ export default function Home() {
     setTheme(next);
   }
   return (
-    <main>
+    <main className="lab-system">
+      <div className="grain-overlay" aria-hidden="true" />
+      <div className="sys-readout-fixed">
+        <span>LOC: JP_NW_01</span>
+        <span>AUTH: KAI_ADMIN</span>
+        <span>SYS_STATUS: ACTIVE</span>
+      </div>
       <header className="site-header">
-        <a className="brand brand-logo" href="#top" aria-label="Kaidevlab home"><Image className="logo-light" src="/brand/kaidevlab-logo-light.webp" alt="Kaidevlab" fill sizes="250px" priority /><Image className="logo-dark" src="/brand/kaidevlab-logo-dark.webp" alt="" aria-hidden="true" fill sizes="250px" priority /></a>
+        <a className="brand brand-logo glitch-load" href="#top" aria-label="Kaidevlab home"><Image className="logo-light" src="/brand/kaidevlab-logo-light.webp" alt="Kaidevlab" fill sizes="250px" priority /><Image className="logo-dark" src="/brand/kaidevlab-logo-dark.webp" alt="" aria-hidden="true" fill sizes="250px" priority /></a>
         <nav aria-label="Primary navigation">
           <a href="#work">Work</a><a href="#notes">Lab Notes</a><a href="#about">About</a><a href="#contact">Contact</a>
         </nav>
@@ -75,6 +81,9 @@ export default function Home() {
       </section>
 
       <section className="signal" aria-label="Current signal">
+        <div className="signal-sensor" aria-hidden="true">
+          <svg viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0,10 Q25,0 50,10 T100,10" fill="none" stroke="currentColor" strokeWidth="1" /></svg>
+        </div>
         <span><b>CURRENTLY BUILDING</b> — 8Agents</span>
         <span><b>CURRENTLY EXPLORING</b> — AI agents, creative AI, and digital storytelling</span>
         <span><b>STATUS</b> — Open to interesting collaborations</span>
